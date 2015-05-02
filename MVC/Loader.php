@@ -25,10 +25,6 @@ final class Loader
         self::loadClass($class);
     }
 
-    private static function autoload($class)
-    {
-        
-    }
 
     public static function registerNamespace($namespace, $path)
     {
