@@ -22,9 +22,23 @@ final class Loader
 
     public static function autoload($class)
     {
-        self::loadClass($class);
-    }
+        foreach(self::$namespaces as $key=>$value){
+            if (strpos($class,$key) === 0){
+                $actualFile = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+                $actualFile =  substr_replace($actualFile, $value, 0, strlen($key)) . '.php';
+                $actualFile = realpath($actualFile);
+                if ($actualFile && is_readable(($actualFile))){
+                    include $actualFile ;
+                }
+                else {
+                    //TODO: fix it
+                    throw new \Exception('File cannot be loaded (' . $actualFile . ')');
+                }
 
+                break;
+            }
+        }
+    }
 
     public static function registerNamespace($namespace, $path)
     {
@@ -37,7 +51,7 @@ final class Loader
 
             $fixedPath = realpath($path);
             if ($fixedPath && is_dir($fixedPath) && is_readable($fixedPath)) {
-                self::$namespaces[$namespace] = $fixedPath . DIRECTORY_SEPARATOR;
+                self::$namespaces[$namespace . '\\'] = $fixedPath . DIRECTORY_SEPARATOR;
             } else {
                 //TODO: fix it
                 throw new \Exception('Namespace directory read error: ' . $fixedPath);

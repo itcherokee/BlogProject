@@ -5,6 +5,8 @@ require_once 'Loader.php';
 class App
 {
     private static $instance = null;
+    private $frontController = null;
+    private $database = null;
 
     private function __construct()
     {
@@ -26,6 +28,11 @@ class App
 
     public function run()
     {
-//        echo "I'm the Run method";
+        // Register paths
+
+
+        $this->frontController = \MVC\FrontController::getInstance();
+        $this->frontController->dispatch();
+        $this->database = \MVC\Database::get_instance();
     }
 }
