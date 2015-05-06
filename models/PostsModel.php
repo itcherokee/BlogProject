@@ -48,7 +48,7 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("sssi", $title, $text, $date, $user_id);
         $statement->execute();
-        return $statement->affected_rows > 0;
+        return $statement->insert_id;
     }
 
     public function getLoggedUserId($username)
@@ -62,10 +62,63 @@ class PostsModel extends BaseModel
 
     public function CreateTag($name)
     {
-        $query = "INSERT INTO posts (name) VALUES(?)";
+        $query = "INSERT INTO tags (name) VALUES(?)";
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $name);
         $statement->execute();
+        return $statement->insert_id;
+       // return $statement->affected_rows > 0;
+    }
+
+    public function linkTagToPost($tag_id, $post_id)
+    {
+        $query = "INSERT INTO tags_posts (tag_id, post_id) VALUES(?, ?)";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("ii", $tag_id, $post_id);
+        $statement->execute();
         return $statement->affected_rows > 0;
+    }
+
+    public function unlinkTagFromPost($tag_id, $post_id){
+        $statement = $this->db->prepare("DELETE FROM tags_posts WHERE (tag_id, post_id) = (?,?)");
+        $statement->bind_param("ii", $tag_id, $post_id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
+
+    public function checkTagExists($tag)
+    {
+        $query = "SELECT id FROM tags WHERE name = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("s", $tag);
+        $statement->execute();
+        return $statement->get_result()->fetch_row()[0];
+    }
+
+    public function deletePost($post_id){
+        $statement = $this->db->prepare("DELETE FROM posts WHERE id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
+
+    public function getAllTagsPerPost($post_id)
+    {
+        $query = "SELECT t.id, t.name FROM tags t "
+            . "INNER JOIN tags_posts tp ON tp.tag_id = t.id WHERE tp.post_id = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $post_id);
+        $statement->execute();
+        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAllCommentsPerPost($post_id)
+    {
+        $query = "SELECT c.id, c.text, c.username, c.useremail FROM comments c "
+            . "INNER JOIN posts p ON c.post_id = p.id WHERE p.id = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $post_id);
+        $statement->execute();
+        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 }

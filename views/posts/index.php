@@ -12,10 +12,17 @@ foreach ($this->posts as $post) {
     echo '<div class="post-box-date-visits">';
     echo '<span class="post-box-date">Date: ' . htmlspecialchars($post['date']) . '</span>';
     echo '<span class="post-box-visits">Views: ' . htmlspecialchars($post['visits']) . '</span>';
+    if (isset($post['tags'])) {
+        echo '<span class="post-box-tags">Tags: ' . htmlspecialchars($post['tags']) . '</span>';
+    }
+    if ($this->isOwnerOfBlog()) {
+        echo "<a href='/" . $this->blogName . "/posts/edit/" . htmlspecialchars($post['id']) . "'>[Edit]</a>";
+        echo "<a href='/" . $this->blogName . "/posts/delete/" . htmlspecialchars($post['id']) . "'>[Delete]</a>";
+    }
     echo '</div>';
     echo '</div>';
 }
 ?>
 
-<a href="/<?= $this->blogName?>/posts/index?page=<?php echo $this->currentPage - 1; ?>">Back</a>
-<a href="/<?= $this->blogName?>/posts/index?page=<?php echo $this->currentPage + 1; ?>">Next</a>
+<a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage - 1; ?>">Back</a>
+<a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage + 1; ?>">Next</a>
