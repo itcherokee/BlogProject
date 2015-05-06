@@ -7,11 +7,16 @@ class App
     private static $instance = null;
     private $frontController = null;
     private $database = null;
+    private $session = null;
 
     private function __construct()
     {
         \MVC\Loader::registerNamespace('MVC', dirname(__FILE__) . DIRECTORY_SEPARATOR);
         \MVC\Loader::registerAutoload();
+
+        // Register Models & COntrollers namespaces
+        \MVC\Loader::registerNamespace('CONTROLLERS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR );
+        \MVC\Loader::registerNamespace('MODELS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR);
     }
 
     /**
@@ -28,11 +33,14 @@ class App
 
     public function run()
     {
-        // Register paths
-
-
         $this->frontController = \MVC\FrontController::getInstance();
+      //  $this->session = new \MVC\Session('blog');
         $this->frontController->dispatch();
         $this->database = \MVC\Database::get_instance();
+
+    }
+
+    public function getSession(){
+        return $this->session;
     }
 }

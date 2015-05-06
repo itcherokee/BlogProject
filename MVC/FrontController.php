@@ -4,15 +4,12 @@ namespace MVC;
 
 class FrontController
 {
-
     private static $instance = null;
     public $components = array();
+    public $blog = null;
     public $controller = null;
     public $action = null;
     public $params = array();
-    //public $admin_routing = false;
-    // public $param = array();
-
 
     private function __construct()
     {
@@ -24,28 +21,36 @@ class FrontController
         $router = new \MVC\Router();
         $router->parse();
 
-        $controller = $router->getController() ;
-        if (isset($controller) && file_exists('controllers/' . $controller . 'Controller.php')) {
+        $this->blog = $router->getBlogOwner();
+        if (isset($this->blog)) {
+            $this->controller = $router->getController();
+            if (isset($this->controller) && file_exists('controllers/' . $this->controller . 'Controller.php')) {
 //            $admin_folder = $admin_routing ? 'admin/' : '';
 //            include_once 'controllers/' . $admin_folder . $controller . '.php';
-            // Is admin controller?
+                // Is admin controller?
 //            $admin_namespace = $admin_routing ? '\Admin' : '';
-            $controller = '\\CONTROLLERS\\' . $controller. 'Controller';
-            $instance = new $controller();
-            $action = $router->getAction();
-            $params = $router->getParams();
+                $this->controller = '\\CONTROLLERS\\' . $this->controller . 'Controller';
+                $instance = new $this->controller($this->blog);
+                $this->action = $router->getAction();
+                $this->params = $router->getParams();
 
-            // Call the object and the method
-            if (isset($action) && method_exists($instance, $action)) {
-                call_user_func_array(array($instance, $action), array($params));
-            } else {
-                // fallback to default action of that controller
+                // Call the object and the method
+                if (isset($this->action) && method_exists($instance, $this->action)) {
+                    call_user_func_array(array($instance, $this->action), array($this->params));
+                } else {
+                    // fallback to default action of that controller
+                    call_user_func_array(array($instance, DEFAULT_ACTION), array());
+                }
+            } else{
+                // forward to post controller for selected blog
+                $defaultController = '\\CONTROLLERS\\PostsController';
+                $instance = new $defaultController($this->blog);
                 call_user_func_array(array($instance, DEFAULT_ACTION), array());
             }
         } else {
             // fallback to default controller and action - set in app.php config file
             $defaultController = '\\CONTROLLERS\\' . DEFAULT_CONTROLLER . 'Controller';
-            $instance = new $defaultController();
+            $instance = new $defaultController(SYSTEM_BLOG);
             call_user_func_array(array($instance, DEFAULT_ACTION), array());
         }
     }

@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kasagavi
- * Date: 15-5-4
- * Time: 12:02
- */ 
+<footer>
+    <div>PepoBlog, All rights reserved. &copy;2015</div>
+</footer>
+</body>
+</html>
