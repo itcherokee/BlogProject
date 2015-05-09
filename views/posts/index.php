@@ -56,11 +56,14 @@
                 <nav>
                     <ul class="pager small">
                         <li class="previous <?php echo $this->currentPage == $this->firstPage ? 'disabled' : '' ?>">
-                            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage - 1; ?>">
+                            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage - 1;
+                            echo empty($this->historyPeriod) ? "" : "&" . $this->historyPeriod; ?>">
                                 <span>&larr;</span>Newer</a>
                         </li>
                         <li class="next <?php echo $this->currentPage == $this->lastPage ? 'disabled' : '' ?>">
-                            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage + 1; ?>">Older<span>&rarr;</span></a>
+                            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage + 1;
+                            echo empty($this->historyPeriod) ? "" : "&" . $this->historyPeriod; ?>">
+                                Older<span>&rarr;</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -73,33 +76,66 @@
         <div class="panel-heading">
             <h3 class="panel-title">Posts</h3>
         </div>
-        <?php
-        if ($this->postsHistorically != null) {
-            echo '<div class="panel-body">';
-            echo '<div class="panel panel-default small">';
-            foreach ($this->postsHistorically as $key => $year) {
-                echo ' <div class="panel-heading small">';
-                echo ' <h4 class="panel-title"><em>' . $key . '</em></h4>';
-                echo '</div>';
-                echo '<ul class="list-group small">';
-                foreach ($year as $month => $counts) {
-                    echo '<li class="list-group-item small">';
-                    echo '<span class="badge small">' . $counts . '</span>';
-                    $dateObj = DateTime::createFromFormat('!m', $month);
-                    $monthName = $dateObj->format('F');
-                    echo $monthName;
-                    echo '</li>';
-                }
-                echo "</ul>";
-            }
+        <?php if ($this->historyList != null) : ?>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <?php $isFirstPanel = true; ?>
+                    <?php foreach ($this->historyList as $key => $year) : ?>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapse<?php echo $key ?>">
+                                        <em><?php echo $key ?></em>
+                                    </a>
+                                </h4>
+                            </div>
 
-            echo "</div>";
-            echo '</div>';
-        } else {
-            echo '<ul class="list-group"><li class="list-group-item">No posts</li></ul>';
-        }
-        ?>
+                            <div id="collapse<?php echo $key ?>"
+                                 class="panel-collapse collapse <?php echo $isFirstPanel ? 'in' : '';
+                                 $isFirstPanel = false ?>">
+                                <ul class="list-group small">
+                                    <?php foreach ($year as $month => $counts) : ?>
+                                        <li class="list-group-item">
+                                            <span class="badge small"><?php echo $counts ?></span>
+                                            <?php
+                                            $dateObj = DateTime::createFromFormat('!m', $month);
+                                            $monthName = $dateObj->format('F');
+                                            ?>
+                                            <a href="/<?= $this->blogName ?>/posts/index?year=<?php echo $key; ?>&month=<?php echo $month ?>">
+                                                <?php echo $monthName; ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        <?php else: ?>
+            <ul class="list-group">
+                <li class="list-group-item">No posts</li>
+            </ul>
+        <?php endif; ?>
     </div>
+<!--    <div class="panel panel-default">-->
+<!--        <div class="panel-heading">-->
+            <form role="search" method="POST" action="/<?php echo $this->blogName ?>/posts/search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search by tag..." name="search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">Go!</button></span>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </form>
+<!--        </div>-->
+<!--    </div>-->
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Most popular tags</h3>

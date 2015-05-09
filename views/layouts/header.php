@@ -2,16 +2,22 @@
 <html>
 
 <head>
-    <meta charset="utf-8"/>
-    <link href="/content/css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--    <link href="/content/css/bootstrap.min.css" rel="stylesheet">-->
-<!--    <link href="/content/css/bootstrap-theme.min.css" rel="stylesheet">-->
+<!--    <alink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+    <!--    <alink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
+    <!--    <alink href="/content/css/styles.css" rel="stylesheet">-->
+    <!---->
+    <!--    <ascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+    <!--    <ascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+
+    <link href="/content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/content/css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="/content/js/jquery-2.1.1.min.js"></script>
-<!--    <script src="/content/js/bootstrap.min.js"></script>-->
+    <script src="/content/js/bootstrap.min.js"></script>
+    <link href="/content/css/styles.css" rel="stylesheet">
     <title>
         <?php if (isset($this->title)) echo htmlspecialchars($this->title) ?>
     </title>
@@ -41,17 +47,7 @@
                     }
                     ?>
                 </ul>
-                <form class="navbar-form navbar-right" role="search" method="POST" action="/">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search by tag...">
-                            <span class="input-group-btn"><button class="btn btn-default" type="button">Go!
-                                </button></span>
-                        </div>
-                        <!-- /input-group -->
-                    </div>
-                    <!-- /.col-lg-6 -->
-                </form>
+
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     if ($this->isLoggedIn()) {

@@ -7,28 +7,58 @@ class PostsController extends BaseController
     protected $lastPage = 0;
     protected $isSinglePost = false;
     protected $mostPopularTags = null;
-    protected $postsHistorically = null;
+    protected $historyList = null;
+    protected $historyPeriod = '';
+    protected $startDate;
+    protected $endDate;
 
     public function __construct($blog)
     {
         parent::__construct($blog);
         $this->pageSize = 3;
-        $this->lastPage = (int)floor($this->modelData->countAllPostsPerBlog($blog) / $this->pageSize);
-
     }
 
     public function index($id = array())
     {
         // loads all posts historically by year, by month, by day
-        $this->postsHistorically = $this->modelData->getPostsHistorically($this->blogName);
+        $this->historyList = $this->modelData->getPostsHistorically($this->blogName);
+
         // loads most popular tags
         $this->mostPopularTags = $this->modelData->getMostPopularTags($this->blogName);
+
+        // check is it single post or multiple posts request
         if (count($id) > 0) {
             $this->isSinglePost = true;
+            $this->lastPage = 0;
             $this->posts = $this->modelData->getPostById($id[0]);
             $this->modelData->increasePostView($this->posts[0]['visits'] + 1, $id[0]);
+
+            //TODO: load all comments and allow "add comment button"
+
         } else {
             $this->isSinglePost = false;
+
+            // check is it historical posts reqest
+            if (isset($_GET['year']) && isset($_GET['month'])) {
+                $dtime = \DateTime::createFromFormat("Y/m/d", $_GET['year'] . '/' . $_GET['month'] . '/1');
+                $startDateTimestamp = $dtime->getTimestamp();
+                $this->startDate = date("Y-m-d", $startDateTimestamp);
+                $this->endDate = date("Y-m-t", $startDateTimestamp);
+                $this->historyPeriod = 'year=' . $_GET['year'] . '&month=' . $_GET['month'];
+            } else {
+                $this->historyPeriod = '';
+                $minMaxPosts = $this->modelData->getOldestAndNewestPostDate($this->blogName);
+                $dtime = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['oldest']);
+                $startDateTimestamp = $dtime->getTimestamp();
+                $this->startDate = date("Y-m-d", $startDateTimestamp);
+                $dtime = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['newest']);
+                $startDateTimestamp = $dtime->getTimestamp();
+                $this->endDate = date("Y-m-t", $startDateTimestamp);
+            }
+
+            $this->lastPage = (int)floor($this->modelData->countAllPostsPerBlog($this->blogName, $this->startDate, $this->endDate) / $this->pageSize);
+
+            // calculate navigation
             $this->currentPage = 0;
             if (isset($_GET['page'])) {
                 $this->currentPage = $_GET['page'];
@@ -43,7 +73,7 @@ class PostsController extends BaseController
             }
 
             $from = $this->currentPage * $this->pageSize;
-            $this->posts = $this->modelData->getAllPostsPerBlogWithLimit($this->blogName, $from, $this->pageSize);
+            $this->posts = $this->modelData->getPostsPerBlogWithLimitByDate($this->blogName, $this->startDate, $this->endDate, $from, $this->pageSize);
         }
 
         foreach ($this->posts as $key => $post) {
@@ -115,8 +145,7 @@ class PostsController extends BaseController
     }
 
 
-    public
-    function delete($id)
+    public function delete($id)
     {
         $this->authorize();
 
@@ -136,8 +165,7 @@ class PostsController extends BaseController
         $this->renderView();
     }
 
-    public
-    function edit($id)
+    public function edit($id)
     {
         $this->authorize();
 
@@ -147,5 +175,11 @@ class PostsController extends BaseController
 
     }
 
+    public function search($tag)
+    {
+        $this->actionName = __FUNCTION__;
+        echo 'tag not found';
+        //$this->renderView();
 
+    }
 }

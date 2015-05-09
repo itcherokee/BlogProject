@@ -20,28 +20,56 @@ class PostsModel extends BaseModel
         return $result;
     }
 
-    public function getAllPostsPerBlogWithLimit($blogName, $from, $pageSize)
+//    public function getAllPostsPerBlogWithLimit($blogName, $from, $pageSize)
+//    {
+//        $query = "SELECT p.id, title, text, date, visits  FROM posts p "
+//            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? ORDER BY p.date DESC LIMIT ?,?";
+//        $statement = $this->db->prepare($query);
+//        $statement->bind_param("sii", $blogName, $from, $pageSize);
+//        $statement->execute();
+//
+//        // return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+//
+//        $result = $this->parseData($statement);
+//        return $result;
+//    }
+
+    public function getPostsPerBlogWithLimitByDate($blogName, $startDate, $endDate, $from, $pageSize)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
-            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? ORDER BY p.date DESC LIMIT ?,?";
+            . "INNER JOIN users u ON p.user_id = u.id "
+            . "WHERE u.username = ? AND p.date BETWEEN ? AND ? "
+            . "ORDER BY p.date DESC LIMIT ?,?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("sii", $blogName, $from, $pageSize);
+        $statement->bind_param("sssii", $blogName, $startDate, $endDate, $from, $pageSize);
         $statement->execute();
-
-        // return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
-
         $result = $this->parseData($statement);
         return $result;
     }
 
-    public function countAllPostsPerBlog($username)
+
+    public function getPostsPerBlogWithTagSearch($blogName, $tag, $from, $pageSize)
+    {
+        $query = "SELECT p.id, title, text, date, visits  FROM posts p "
+            . "INNER JOIN users u ON p.user_id = u.id "
+            . "INNER JOIN tags_posts tp ON p.id = tp.post_id "
+            . "INNER JOIN tags t ON t.id = tp.tag_id "
+            . "WHERE u.username = ? AND p.date BETWEEN ? AND ? "
+            . "ORDER BY p.date DESC LIMIT ?,?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("ssii", $blogName, $tag, $from, $pageSize);
+        $statement->execute();
+        $result = $this->parseData($statement);
+        return $result;
+    }
+
+    public function countAllPostsPerBlog($username, $startDate, $endDate)
     {
         $query = "SELECT count(p.Id) FROM posts p "
-            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ?";
+            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? AND p.date BETWEEN ? AND ? ";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("s", $username);
+        $statement->bind_param("sss", $username, $startDate, $endDate);
         $statement->execute();
-        //return $statement->get_result()->fetch_row()[0];
         $result = null;
         $statement->bind_result($result);
         $statement->fetch();
@@ -169,6 +197,18 @@ class PostsModel extends BaseModel
         return $result;
     }
 
+    public function getOldestAndNewestPostDate($username)
+    {
+        $query = "SELECT MIN(p.date) AS oldest, MAX(p.date) AS newest FROM posts p "
+            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("s", $username);
+        $statement->execute();
+        $result = $this->parseData($statement);
+        return $result;
+    }
+
+
     public function getPostsHistorically($username)
     {
         $query = "SELECT count(p.id) AS counts, "
@@ -190,9 +230,9 @@ class PostsModel extends BaseModel
             if (!array_key_exists($record['year'], $result)) {
                 $result[$record['year']] = array($record['month'] => $record['counts']);
             } else {
-                if (array_key_exists($record['month'], $result[$record['year']])){
+                if (array_key_exists($record['month'], $result[$record['year']])) {
                     $result[$record['year']][$record['month']] += $record['counts'];
-                } else{
+                } else {
                     $result[$record['year']][$record['month']] = $record['counts'];
                 }
             }
