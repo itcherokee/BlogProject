@@ -75,6 +75,5 @@
     <section class="col-xs-12 col-sm-10 col-sm-offset-1">
         <?php include('messages.php') ?>
     </section>
-    <section class="col-xs-12 col-sm-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+    <section class="col-xs-12">
+

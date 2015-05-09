@@ -23,7 +23,7 @@ class PostsModel extends BaseModel
     public function getAllPostsPerBlogWithLimit($blogName, $from, $pageSize)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
-            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? ORDER BY p.date LIMIT ?,?";
+            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? ORDER BY p.date DESC LIMIT ?,?";
         $statement = $this->db->prepare($query);
         $statement->bind_param("sii", $blogName, $from, $pageSize);
         $statement->execute();
@@ -146,5 +146,22 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("ii", $views, $id);
         $statement->execute();
+    }
+
+    public function getMostPopularTags($username){
+        $query = "SELECT t.name, t.id, count(tp.tag_id) as counts "
+            . "FROM tags_posts tp "
+            . "JOIN tags t ON tp.tag_id = t.id "
+            . "JOIN posts p ON tp.post_id = p.id "
+            . "JOIN users u ON u.id = p.user_id "
+            . "WHERE u.username = ? "
+            . "GROUP BY t.name "
+            . "ORDER BY counts DESC "
+            . "LIMIT 0, 5";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("s", $username);
+        $statement->execute();
+        $result = $this->parseData($statement);
+        return $result;
     }
 }

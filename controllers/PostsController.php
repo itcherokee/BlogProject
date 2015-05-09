@@ -6,6 +6,7 @@ class PostsController extends BaseController
     protected $firstPage = 0;
     protected $lastPage = 0;
     protected $isSinglePost = false;
+    protected $mostPopularTags = null;
 
     public function __construct($blog)
     {
@@ -18,6 +19,7 @@ class PostsController extends BaseController
     public function index($id = array())
     {
         //TODO : fix issue when sending index of blog for viewing
+        $this->mostPopularTags = $this->modelData->getMostPopularTags($this->blogName);
         if (count($id) > 0) {
             $this->isSinglePost = true;
             $this->posts = $this->modelData->getPostById($id[0]);
@@ -41,33 +43,26 @@ class PostsController extends BaseController
             $this->posts = $this->modelData->getAllPostsPerBlogWithLimit($this->blogName, $from, $this->pageSize);
         }
 
-
-
-//        if ($this->isSinglePost) {
-//
-//        } else {
-//
-//        }
-
         foreach ($this->posts as $key => $post) {
+            if ($this->isSinglePost) {
+                $post['visits'] = $post['visits'] + 1;
+            } else {
+                $post['title'] = mb_substr($post['title'], 0, 70) . '...';
+                $post['text'] = mb_substr($post['text'], 0, 100) . '...';
+            }
+
             $tags = $this->modelData->getAllTagsPerPost($post['id']);
             if (count($tags) > 0) {
                 $combinedTags = array();
                 foreach ($tags as $tag) {
                     $combinedTags[] = $tag['name'];
                 }
+
                 $tags = implode(', ', $combinedTags);
                 $post['tags'] = $tags;
-
-                if ($this->isSinglePost) {
-                    $post['visits'] = $post['visits'] + 1;
-                } else {
-                    $post['title'] = mb_substr($post['title'], 0, 70) . '...';
-                    $post['text'] = mb_substr($post['text'], 0, 100) . '...';
-                }
-
-                $this->posts[$key] = $post;
             }
+
+            $this->posts[$key] = $post;
         }
 
 
