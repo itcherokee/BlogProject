@@ -126,7 +126,7 @@
             <form role="search" method="POST" action="/<?php echo $this->blogName ?>/posts/search">
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search by tag..." name="search">
+                        <input type="text" class="form-control" placeholder="Search by tag..." name="tag">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">Go!</button></span>
                     </div>

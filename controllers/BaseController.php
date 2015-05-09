@@ -37,10 +37,11 @@ abstract class BaseController
     {
     }
 
-    public function renderView($includeLayout = true)
+    public function renderView($otherAction = null, $includeLayout = true)
     {
         // if (!$this->isViewRendered) {
-        $viewFileName = 'views/' . strtolower($this->controllerName) . '/' . strtolower($this->actionName) . '.php';
+        $selectedAction = $otherAction == null ? strtolower($this->actionName) : strtolower($otherAction) ;
+        $viewFileName = 'views/' . strtolower($this->controllerName) . '/' . $selectedAction . '.php';
         if ($includeLayout) {
             $headerFile = 'views/layouts/header.php';
             include_once($headerFile);

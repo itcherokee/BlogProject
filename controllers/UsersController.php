@@ -38,8 +38,8 @@ class UsersController extends BaseController
     {
         $this->actionName = __FUNCTION__;
         if ($this->isPost) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
 
             // TODO: to be modified when site start to support users without blogs
             $hasBlog = true;
@@ -48,7 +48,6 @@ class UsersController extends BaseController
 //            }
 
             if (!empty($username) && !empty($password)) {
-                //$registrationSuccess = $this->modelData->register($username, $password, $blogName);
                 $registrationSuccess = $this->modelData->register($username, $password, $hasBlog);
                 if ($registrationSuccess) {
                     $_SESSION['username'] = $username;

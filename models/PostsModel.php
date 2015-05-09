@@ -48,16 +48,16 @@ class PostsModel extends BaseModel
     }
 
 
-    public function getPostsPerBlogWithTagSearch($blogName, $tag, $from, $pageSize)
+    public function getPostsPerBlogWithLimitByDateByTag($blogName, $tag, $startDate, $endDate, $from, $pageSize)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
             . "INNER JOIN users u ON p.user_id = u.id "
             . "INNER JOIN tags_posts tp ON p.id = tp.post_id "
             . "INNER JOIN tags t ON t.id = tp.tag_id "
-            . "WHERE u.username = ? AND p.date BETWEEN ? AND ? "
+            . "WHERE u.username = ? AND t.name = ? AND p.date BETWEEN ? AND ? "
             . "ORDER BY p.date DESC LIMIT ?,?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("ssii", $blogName, $tag, $from, $pageSize);
+        $statement->bind_param("ssssii", $blogName, $tag, $startDate, $endDate, $from, $pageSize);
         $statement->execute();
         $result = $this->parseData($statement);
         return $result;
@@ -69,6 +69,22 @@ class PostsModel extends BaseModel
             . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? AND p.date BETWEEN ? AND ? ";
         $statement = $this->db->prepare($query);
         $statement->bind_param("sss", $username, $startDate, $endDate);
+        $statement->execute();
+        $result = null;
+        $statement->bind_result($result);
+        $statement->fetch();
+        return $result;
+    }
+
+    public function countAllPostsPerBlogPerTag($username, $tag, $startDate, $endDate)
+    {
+        $query = "SELECT count(p.Id) FROM posts p "
+            . "INNER JOIN users u ON p.user_id = u.id "
+            . "INNER JOIN tags_posts tp ON p.id = tp.post_id "
+            . "INNER JOIN tags t ON t.id = tp.tag_id "
+            . "WHERE u.username = ? AND t.name = ? AND p.date BETWEEN ? AND ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("ssss", $username, $tag, $startDate, $endDate);
         $statement->execute();
         $result = null;
         $statement->bind_result($result);
