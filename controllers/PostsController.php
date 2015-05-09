@@ -10,12 +10,15 @@ class PostsController extends BaseController
     {
         parent::__construct($blog);
         $this->pageSize = 3;
-        $this->lastPage = (int)floor($this->modelData->countAllPostsPerBlog($this->getUsername()) / $this->pageSize);
+        $this->lastPage = (int)floor($this->modelData->countAllPostsPerBlog($blog) / $this->pageSize);
 
     }
 
-    public function index()
+    public function index($id = array())
     {
+        //TODO : fix issue when sending index of blog for viewing
+
+
         $this->currentPage = 0;
         if (isset($_GET['page'])) {
             $this->currentPage = $_GET['page'];
@@ -29,14 +32,36 @@ class PostsController extends BaseController
             $this->currentPage = $this->lastPage;
         }
 
-        $from = $this->currentPage * $this->pageSize;
-        $this->posts = $this->modelData->getAllPostsPerBlogWithLimit($this->blogName, $from, $this->pageSize);
-        foreach($this->posts as $post){
+        if (count($id) === 0) {
+            $from = $this->currentPage * $this->pageSize;
+            $this->posts = $this->modelData->getAllPostsPerBlogWithLimit($this->blogName, $from, $this->pageSize);
+        } else {
+            $this->posts = $this->modelData->getPostById($id[0]);
+            $this->modelData->increasePostView($this->posts[0]['visits'] + 1 ,$id[0]);
+
+        }
+
+        foreach ($this->posts as $key => $post) {
             $tags = $this->modelData->getAllTagsPerPost($post['id']);
-            if (count($tags) > 0){
-                $this->posts['tags'] = implode(', ', $tags);
+            if (count($tags) > 0) {
+                $combinedTags = array();
+                foreach ($tags as $tag) {
+                    $combinedTags[] = $tag['name'];
+                }
+                $tags = implode(', ', $combinedTags);
+                $post['tags'] = $tags;
+
+                if (count($id) === 0) {
+                    $post['title'] = mb_substr($post['title'], 0, 70) . '...';
+                    $post['text'] = mb_substr($post['text'], 0, 100) . '...';
+                } else {
+                    $post['visits'] = $post['visits'] + 1;
+                }
+
+                $this->posts[$key] = $post;
             }
         }
+
 
         $this->renderView();
     }
@@ -94,7 +119,6 @@ class PostsController extends BaseController
         // check is there any comments linked -> check does checkbox allowinf delete of them is clicked -> yes delete all comments
         // find all linked Tags -> unlink them
         // delete post
-
 
 
 //        if ($this->modelData->deletePost($id)) {

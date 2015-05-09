@@ -1,4 +1,6 @@
-<h1>Create New Post</h1>
+<h3 class="panel-title">Create New Post</h3>
+</div>
+<div class="panel-body">
 
 <form method="post" action="/<?php echo $this->blogName?>/posts/create">
     Title: <input type="text" name="title">

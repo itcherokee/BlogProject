@@ -3,7 +3,7 @@ namespace CONTROLLERS;
 class HomeController extends BaseController
 {
 
-    protected $blogs = array();
+    public $blogs = array();
     protected $firstPage = 0;
     protected $lastPage = 0;
 

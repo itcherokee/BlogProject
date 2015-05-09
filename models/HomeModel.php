@@ -14,7 +14,10 @@ class HomeModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("ii", $from, $pageSize);
         $statement->execute();
-        $result = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+        //$result = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
+       $result = $this->parseData($statement);
+
         return $result;
     }
 

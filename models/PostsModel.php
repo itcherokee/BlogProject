@@ -10,14 +10,13 @@ class PostsModel extends BaseModel
         parent::__construct();
     }
 
-    public function getAllPerBlog($blogName)
+    public function getPostById($id)
     {
-        $query = "SELECT p.id, title, text, date, visits  FROM posts p "
-            . "INNER JOIN users u ON p.user_id = u.id WHERE u.blog_name = ? ORDER BY p.date";
+        $query = "SELECT id, title, text, date, visits  FROM posts WHERE id = ?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("s", $blogName);
+        $statement->bind_param("i", $id);
         $statement->execute();
-        $result = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $this->parseData($statement);
         return $result;
     }
 
@@ -28,7 +27,11 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("sii", $blogName, $from, $pageSize);
         $statement->execute();
-        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        // return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $result = $this->parseData($statement);
+        return $result;
     }
 
     public function countAllPostsPerBlog($username)
@@ -38,7 +41,11 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $username);
         $statement->execute();
-        return $statement->get_result()->fetch_row()[0];
+        //return $statement->get_result()->fetch_row()[0];
+        $result  = null;
+        $statement->bind_result($result);
+        $statement->fetch();
+        return $result;
     }
 
     public function CreatePost($title, $text, $date, $user_id)
@@ -57,7 +64,11 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $username);
         $statement->execute();
-        return $statement->get_result()->fetch_row()[0];
+        //return $statement->get_result()->fetch_row()[0];
+        $result  = null;
+        $statement->bind_result($result);
+        $statement->fetch();
+        return $result;
     }
 
     public function CreateTag($name)
@@ -92,7 +103,11 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $tag);
         $statement->execute();
-        return $statement->get_result()->fetch_row()[0];
+        //return $statement->get_result()->fetch_row()[0];
+        $result  = null;
+        $statement->bind_result($result);
+        $statement->fetch();
+        return $result;
     }
 
     public function deletePost($post_id){
@@ -109,7 +124,9 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("i", $post_id);
         $statement->execute();
-        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+        // return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $this->parseData($statement);
+        return $result;
     }
 
     public function getAllCommentsPerPost($post_id)
@@ -119,6 +136,15 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("i", $post_id);
         $statement->execute();
-        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+        //return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $this->parseData($statement);
+        return $result;
+    }
+
+    public function increasePostView($views, $id){
+        $query = "UPDATE posts SET visits = ? WHERE id = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("ii", $views, $id);
+        $statement->execute();
     }
 }

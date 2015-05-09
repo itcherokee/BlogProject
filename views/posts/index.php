@@ -1,28 +1,65 @@
-<h1>Post\Index View</h1>
+<h3 class="panel-title">
+    <?php
+    echo "<strong><a href='/" . $this->blogName . "/posts/index'>";
+    echo ucfirst($this->blogName);
+    echo "</a></strong>'s blog";
+    if ($this->isOwnerOfBlog()) {
+        echo " <a href='/" . $this->blogName . "/posts/create' class='btn btn-default btn-xs'>Add New Post</a>";
+    }
+    ?>
+</h3>
+</div>
+<div class="panel-body">
 
 <?php
-if ($this->isOwnerOfBlog()) {
-    echo "<a href='/" . $this->blogName . "/posts/create'>Add New Post</a>";
-}
-
 foreach ($this->posts as $post) {
-    echo '<div class="post-box">';
-    echo '<div class="post-box-title">' . htmlspecialchars($post['title']) . '</div>';
-    echo '<div class="post-box-text">' . htmlspecialchars($post['text']) . '</div>';
-    echo '<div class="post-box-date-visits">';
-    echo '<span class="post-box-date">Date: ' . htmlspecialchars($post['date']) . '</span>';
-    echo '<span class="post-box-visits">Views: ' . htmlspecialchars($post['visits']) . '</span>';
-    if (isset($post['tags'])) {
-        echo '<span class="post-box-tags">Tags: ' . htmlspecialchars($post['tags']) . '</span>';
-    }
+    echo '<div class="panel panel-default">';
+
+    echo '<div class="panel-heading">';
+    echo '<h3 class="panel-title">';
+    echo "<a href='/" . $this->blogName . "/posts/index/" . htmlspecialchars($post['id']) . "'> ";
+    echo  htmlspecialchars($post['title']);
+    echo '</a>';
+    echo '</h3>';
+    echo '</div>'; // close heading
+
+    echo '<div class="panel-body">';
+
+    echo '<div>';
+    echo htmlspecialchars($post['text']);
+    echo '</div>';
+    echo '<div>';
+    echo '<span class="">[' . htmlspecialchars($post['date']) . ']</span> ';
     if ($this->isOwnerOfBlog()) {
-        echo "<a href='/" . $this->blogName . "/posts/edit/" . htmlspecialchars($post['id']) . "'>[Edit]</a>";
-        echo "<a href='/" . $this->blogName . "/posts/delete/" . htmlspecialchars($post['id']) . "'>[Delete]</a>";
+        echo "<a href='/" . $this->blogName . "/posts/edit/" . htmlspecialchars($post['id']) . "'> ";
+        echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
+        echo "<a href='/" . $this->blogName . "/posts/delete/" . htmlspecialchars($post['id']) . "'> ";
+        echo "<span class='glyphicon glyphicon-trash'></span></a>";
     }
     echo '</div>';
-    echo '</div>';
+    echo '</div>'; // close body
+
+    echo '<div class="panel-footer">';
+    echo '<span class="badge">' . htmlspecialchars($post['visits']) . ' views</span> ';
+    echo '<span class="text-left">';
+    echo ' Tags: ';
+    echo !empty($post['tags']) ? ' <em>' . htmlspecialchars($post['tags']) . '</em>' : '';
+    echo '</span>';
+    echo '</div>'; // close footer
+
+    echo '</div>'; // close panel
 }
 ?>
 
-<a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage - 1; ?>">Back</a>
-<a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage + 1; ?>">Next</a>
+<nav>
+    <ul class="pager">
+        <li class="previous <?php echo $this->currentPage == $this->firstPage ? 'disabled' : '' ?>">
+            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage - 1; ?>"><span>&larr;</span>
+                Older</a>
+        </li>
+        <li class="next <?php echo $this->currentPage == $this->lastPage ? 'disabled' : '' ?>">
+            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage + 1; ?>">Newer
+                <span>&rarr;</span></a>
+        </li>
+    </ul>
+</nav>

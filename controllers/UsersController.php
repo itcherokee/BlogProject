@@ -28,9 +28,7 @@ class UsersController extends BaseController
                 $this->redirect(SYSTEM_BLOG, "users", "login");
             }
 
-            // $blogName = $this->modelData->getUserBlog($username);
-            //$this->redirect($blogName, 'posts', 'index');
-            $this->redirect($username, 'posts', 'index');
+            $this->redirect($username, 'posts', DEFAULT_ACTION);
         }
 
         $this->renderView();
@@ -42,13 +40,17 @@ class UsersController extends BaseController
         if ($this->isPost) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            // $blogName = $_POST['blog-name'];
-            // if(!empty($username) && !empty($password) && !empty($blogName)){
+
+            // TODO: to be modified when site start to support users without blogs
+            $hasBlog = true;
+//            if (!empty($_POST['has-blog'])){
+//                $hasBlog = true;
+//            }
+
             if (!empty($username) && !empty($password)) {
                 //$registrationSuccess = $this->modelData->register($username, $password, $blogName);
-                $registrationSuccess = $this->modelData->register($username, $password);
+                $registrationSuccess = $this->modelData->register($username, $password, $hasBlog);
                 if ($registrationSuccess) {
-                    //$this->session->username = $username;
                     $_SESSION['username'] = $username;
                     $this->addInfoMessage("Successful registration");
                 } else {
@@ -56,8 +58,6 @@ class UsersController extends BaseController
                     $this->redirect(SYSTEM_BLOG, $this->controllerName, $this->actionName);
                 }
 
-                //$blogName = $this->modelData->getUserBlog($username);
-                //$this->redirect($blogName, 'posts', 'index');
                 $this->redirect($username, 'posts', DEFAULT_ACTION);
             }
 

@@ -31,8 +31,6 @@ abstract class BaseController
         } else {
             $this->isPost = false;
         }
-
-
     }
 
     public function index()
@@ -42,7 +40,7 @@ abstract class BaseController
     public function renderView($includeLayout = true)
     {
         // if (!$this->isViewRendered) {
-        $viewFileName = 'views/' . $this->controllerName . '/' . $this->actionName . '.php';
+        $viewFileName = 'views/' . strtolower($this->controllerName) . '/' . strtolower($this->actionName) . '.php';
         if ($includeLayout) {
             $headerFile = 'views/layouts/header.php';
             include_once($headerFile);
@@ -110,12 +108,12 @@ abstract class BaseController
 
     function addInfoMessage($msg)
     {
-        $this->addMessage($msg, 'info');
+        $this->addMessage($msg, 'alert-success');
     }
 
     function addErrorMessage($msg)
     {
-        $this->addMessage($msg, 'error');
+        $this->addMessage($msg, 'alert-danger');
     }
 
     function addMessage($msg, $type)

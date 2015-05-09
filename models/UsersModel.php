@@ -11,24 +11,27 @@ class UsersModel extends BaseModel
     }
 
    // public function register($username, $password, $blogName)
-    public function register($username, $password)
+    public function register($username, $password, $withBlog)
     {
         $statement = $this->db->prepare("SELECT id FROM users WHERE username = ?");
         $statement->bind_param("s", $username);
         $statement->execute();
-        $result = $statement->get_result();
-        if (count($result->fetch_all()) > 0) {
+
+//        $result = $statement->get_result();
+//        if (count($result->fetch_all()) > 0) {
+//            return false;
+//        }
+
+        $statement->bind_result($result);
+        if ($statement->fetch() > 0) {
             return false;
         }
 
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        //$statement2 = $this->db->prepare("INSERT INTO users (username, password, blog_name) VALUES (?, ?, ?)");
-        $statement2 = $this->db->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-//        $statement2->bind_param("sss", $username, $password_hash, $blogName);
-        $statement2->bind_param("ss", $username, $password_hash);
+        $statement2 = $this->db->prepare("INSERT INTO users (username, password, has_blog) VALUES (?, ?, ?)");
+        $statement2->bind_param("ssi", $username, $password_hash, $withBlog);
         $statement2->execute();
-
-        return true;
+        return $statement2->affected_rows > 0;
     }
 
     public function login($username, $password)
@@ -36,9 +39,11 @@ class UsersModel extends BaseModel
         $statement = $this->db->prepare("SELECT password FROM users WHERE username = ?");
         $statement->bind_param("s", $username);
         $statement->execute();
-        $result = $statement->get_result();
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
+        //$result = $statement->get_result();
+        //$user = $result->fetch_assoc();
+        $user = $this->parseData($statement);
+
+        if (password_verify($password, $user[0]['password'])) {
             return true;
         }
 
