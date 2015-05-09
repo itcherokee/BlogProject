@@ -171,7 +171,7 @@ class PostsModel extends BaseModel
 
     public function getPostsHistorically($username)
     {
-        $query = "SELECT count(p.id), "
+        $query = "SELECT count(p.id) AS counts, "
             . "EXTRACT(YEAR FROM p.date) AS year, "
             . "EXTRACT(MONTH FROM p.date) AS month, "
             . "EXTRACT(DAY FROM p.date) AS day "
@@ -179,11 +179,25 @@ class PostsModel extends BaseModel
             . "JOIN users u ON u.id = p.user_id "
             . "WHERE u.username = ? "
             . "GROUP BY year, month, day "
-            . "ORDER BY year DESC, month DESC, day DESC ";
+            . "ORDER BY year DESC, month ASC";
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $username);
         $statement->execute();
-        $result = $this->parseData($statement);
+        $fromDbResult = $this->parseData($statement);
+
+        $result = array();
+        foreach ($fromDbResult as $record) {
+            if (!array_key_exists($record['year'], $result)) {
+                $result[$record['year']] = array($record['month'] => $record['counts']);
+            } else {
+                if (array_key_exists($record['month'], $result[$record['year']])){
+                    $result[$record['year']][$record['month']] += $record['counts'];
+                } else{
+                    $result[$record['year']][$record['month']] = $record['counts'];
+                }
+            }
+        }
+
         return $result;
     }
 }

@@ -4,10 +4,14 @@
 <head>
     <meta charset="utf-8"/>
     <link href="/content/css/styles.css" rel="stylesheet">
-    <link href="/content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/content/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!--    <link href="/content/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="/content/css/bootstrap-theme.min.css" rel="stylesheet">-->
     <script src="/content/js/jquery-2.1.1.min.js"></script>
-    <script src="/content/js/bootstrap.min.js"></script>
+<!--    <script src="/content/js/bootstrap.min.js"></script>-->
     <title>
         <?php if (isset($this->title)) echo htmlspecialchars($this->title) ?>
     </title>

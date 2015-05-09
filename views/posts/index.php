@@ -75,14 +75,26 @@
         </div>
         <?php
         if ($this->postsHistorically != null) {
-            echo '<ul class="list-group">';
-            foreach ($this->postsHistorically as $year) {
-                echo '<li class="list-group-item">';
-                echo $year['year'];
-                if ($post['year'])
-                echo '</li>';
+            echo '<div class="panel-body">';
+            echo '<div class="panel panel-default small">';
+            foreach ($this->postsHistorically as $key => $year) {
+                echo ' <div class="panel-heading small">';
+                echo ' <h4 class="panel-title"><em>' . $key . '</em></h4>';
+                echo '</div>';
+                echo '<ul class="list-group small">';
+                foreach ($year as $month => $counts) {
+                    echo '<li class="list-group-item small">';
+                    echo '<span class="badge small">' . $counts . '</span>';
+                    $dateObj = DateTime::createFromFormat('!m', $month);
+                    $monthName = $dateObj->format('F');
+                    echo $monthName;
+                    echo '</li>';
+                }
+                echo "</ul>";
             }
-            echo "</ul>";
+
+            echo "</div>";
+            echo '</div>';
         } else {
             echo '<ul class="list-group"><li class="list-group-item">No posts</li></ul>';
         }
