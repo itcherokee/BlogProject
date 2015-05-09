@@ -47,7 +47,6 @@ class PostsModel extends BaseModel
         return $result;
     }
 
-
     public function getPostsPerBlogWithLimitByDateByTag($blogName, $tag, $startDate, $endDate, $from, $pageSize)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
@@ -182,7 +181,6 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("i", $post_id);
         $statement->execute();
-        //return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
         $result = $this->parseData($statement);
         return $result;
     }

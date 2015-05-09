@@ -49,6 +49,35 @@
                 echo '</span>';
                 echo '</div>'; // close footer
                 echo '</div>'; // close panel
+                if ($this->isSinglePost){
+                    echo " <a href='/" . $this->blogName . "/comments/create/" . htmlspecialchars($post['id']) ." class='btn btn-default btn-xs'>Add New Comment</a>";
+
+                    echo '<div class="panel panel-default">';
+                    echo '<div class="panel-heading">';
+                    echo '<h3 class="panel-title">Comments:</h3>';
+                    echo '</div>'; // close heading
+
+                    echo '<div class="panel-body small">';
+                    foreach($post['comments'] as $comment){
+                        echo '<div>';
+                        echo htmlspecialchars($comment['text']);
+                        echo '</div>';
+                        echo '<div>';
+                        echo '<span>written by [' . htmlspecialchars($comment['username']) . ']</span> ';
+                        if ($this->isOwnerOfBlog()) {
+                            echo "<a href='/" . $this->blogName . "/comments/edit/" . htmlspecialchars($comment['id']) . "'> ";
+                            echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
+                            echo "<a href='/" . $this->blogName . "/comments/delete/" . htmlspecialchars($comment['id']) . "'> ";
+                            echo "<span class='glyphicon glyphicon-trash'></span></a>";
+                        }
+                        echo '</div>';
+                        echo '<hr/>';
+                    }
+                    echo '</div>'; // close body
+
+                    echo '</div>'; // close panel
+                }
+
             }
             ?>
 
@@ -121,21 +150,15 @@
             </ul>
         <?php endif; ?>
     </div>
-<!--    <div class="panel panel-default">-->
-<!--        <div class="panel-heading">-->
-            <form role="search" method="POST" action="/<?php echo $this->blogName ?>/posts/search">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search by tag..." name="tag">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">Go!</button></span>
-                    </div>
-                    <!-- /input-group -->
-                </div>
-                <!-- /.col-lg-6 -->
-            </form>
-<!--        </div>-->
-<!--    </div>-->
+    <form role="search" method="POST" action="/<?php echo $this->blogName ?>/posts/search">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by tag..." name="tag">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button></span>
+            </div>
+        </div>
+    </form>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Most popular tags</h3>
