@@ -42,7 +42,7 @@ class PostsModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         //return $statement->get_result()->fetch_row()[0];
-        $result  = null;
+        $result = null;
         $statement->bind_result($result);
         $statement->fetch();
         return $result;
@@ -65,7 +65,7 @@ class PostsModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         //return $statement->get_result()->fetch_row()[0];
-        $result  = null;
+        $result = null;
         $statement->bind_result($result);
         $statement->fetch();
         return $result;
@@ -78,7 +78,7 @@ class PostsModel extends BaseModel
         $statement->bind_param("s", $name);
         $statement->execute();
         return $statement->insert_id;
-       // return $statement->affected_rows > 0;
+        // return $statement->affected_rows > 0;
     }
 
     public function linkTagToPost($tag_id, $post_id)
@@ -90,7 +90,8 @@ class PostsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
-    public function unlinkTagFromPost($tag_id, $post_id){
+    public function unlinkTagFromPost($tag_id, $post_id)
+    {
         $statement = $this->db->prepare("DELETE FROM tags_posts WHERE (tag_id, post_id) = (?,?)");
         $statement->bind_param("ii", $tag_id, $post_id);
         $statement->execute();
@@ -104,13 +105,14 @@ class PostsModel extends BaseModel
         $statement->bind_param("s", $tag);
         $statement->execute();
         //return $statement->get_result()->fetch_row()[0];
-        $result  = null;
+        $result = null;
         $statement->bind_result($result);
         $statement->fetch();
         return $result;
     }
 
-    public function deletePost($post_id){
+    public function deletePost($post_id)
+    {
         $statement = $this->db->prepare("DELETE FROM posts WHERE id = ?");
         $statement->bind_param("i", $id);
         $statement->execute();
@@ -141,14 +143,16 @@ class PostsModel extends BaseModel
         return $result;
     }
 
-    public function increasePostView($views, $id){
+    public function increasePostView($views, $id)
+    {
         $query = "UPDATE posts SET visits = ? WHERE id = ?";
         $statement = $this->db->prepare($query);
         $statement->bind_param("ii", $views, $id);
         $statement->execute();
     }
 
-    public function getMostPopularTags($username){
+    public function getMostPopularTags($username)
+    {
         $query = "SELECT t.name, t.id, count(tp.tag_id) as counts "
             . "FROM tags_posts tp "
             . "JOIN tags t ON tp.tag_id = t.id "
@@ -158,6 +162,24 @@ class PostsModel extends BaseModel
             . "GROUP BY t.name "
             . "ORDER BY counts DESC "
             . "LIMIT 0, 5";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("s", $username);
+        $statement->execute();
+        $result = $this->parseData($statement);
+        return $result;
+    }
+
+    public function getPostsHistorically($username)
+    {
+        $query = "SELECT count(p.id), "
+            . "EXTRACT(YEAR FROM p.date) AS year, "
+            . "EXTRACT(MONTH FROM p.date) AS month, "
+            . "EXTRACT(DAY FROM p.date) AS day "
+            . "FROM posts p "
+            . "JOIN users u ON u.id = p.user_id "
+            . "WHERE u.username = ? "
+            . "GROUP BY year, month, day "
+            . "ORDER BY year DESC, month DESC, day DESC ";
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $username);
         $statement->execute();

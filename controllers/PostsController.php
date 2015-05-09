@@ -7,6 +7,7 @@ class PostsController extends BaseController
     protected $lastPage = 0;
     protected $isSinglePost = false;
     protected $mostPopularTags = null;
+    protected $postsHistorically = null;
 
     public function __construct($blog)
     {
@@ -18,7 +19,9 @@ class PostsController extends BaseController
 
     public function index($id = array())
     {
-        //TODO : fix issue when sending index of blog for viewing
+        // loads all posts historically by year, by month, by day
+        $this->postsHistorically = $this->modelData->getPostsHistorically($this->blogName);
+        // loads most popular tags
         $this->mostPopularTags = $this->modelData->getMostPopularTags($this->blogName);
         if (count($id) > 0) {
             $this->isSinglePost = true;

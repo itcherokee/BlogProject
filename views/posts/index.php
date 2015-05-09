@@ -74,12 +74,12 @@
             <h3 class="panel-title">Posts</h3>
         </div>
         <?php
-        if ($this->mostPopularTags != null) {
+        if ($this->postsHistorically != null) {
             echo '<ul class="list-group">';
-            foreach ($this->mostPopularTags as $tag) {
+            foreach ($this->postsHistorically as $year) {
                 echo '<li class="list-group-item">';
-                echo '<span class="badge">' . $tag['counts'] . '</span>';
-                echo $tag['name'];
+                echo $year['year'];
+                if ($post['year'])
                 echo '</li>';
             }
             echo "</ul>";
