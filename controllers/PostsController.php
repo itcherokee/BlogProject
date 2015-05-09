@@ -5,6 +5,7 @@ class PostsController extends BaseController
     protected $posts = array();
     protected $firstPage = 0;
     protected $lastPage = 0;
+    protected $isSinglePost = false;
 
     public function __construct($blog)
     {
@@ -17,29 +18,36 @@ class PostsController extends BaseController
     public function index($id = array())
     {
         //TODO : fix issue when sending index of blog for viewing
+        if (count($id) > 0) {
+            $this->isSinglePost = true;
+            $this->posts = $this->modelData->getPostById($id[0]);
+            $this->modelData->increasePostView($this->posts[0]['visits'] + 1, $id[0]);
+        } else {
+            $this->isSinglePost = false;
+            $this->currentPage = 0;
+            if (isset($_GET['page'])) {
+                $this->currentPage = $_GET['page'];
+            }
 
+            if ($this->currentPage < $this->firstPage) {
+                $this->currentPage = $this->firstPage;
+            }
 
-        $this->currentPage = 0;
-        if (isset($_GET['page'])) {
-            $this->currentPage = $_GET['page'];
-        }
+            if ($this->currentPage > $this->lastPage) {
+                $this->currentPage = $this->lastPage;
+            }
 
-        if ($this->currentPage < $this->firstPage) {
-            $this->currentPage = $this->firstPage;
-        }
-
-        if ($this->currentPage > $this->lastPage) {
-            $this->currentPage = $this->lastPage;
-        }
-
-        if (count($id) === 0) {
             $from = $this->currentPage * $this->pageSize;
             $this->posts = $this->modelData->getAllPostsPerBlogWithLimit($this->blogName, $from, $this->pageSize);
-        } else {
-            $this->posts = $this->modelData->getPostById($id[0]);
-            $this->modelData->increasePostView($this->posts[0]['visits'] + 1 ,$id[0]);
-
         }
+
+
+
+//        if ($this->isSinglePost) {
+//
+//        } else {
+//
+//        }
 
         foreach ($this->posts as $key => $post) {
             $tags = $this->modelData->getAllTagsPerPost($post['id']);
@@ -51,11 +59,11 @@ class PostsController extends BaseController
                 $tags = implode(', ', $combinedTags);
                 $post['tags'] = $tags;
 
-                if (count($id) === 0) {
+                if ($this->isSinglePost) {
+                    $post['visits'] = $post['visits'] + 1;
+                } else {
                     $post['title'] = mb_substr($post['title'], 0, 70) . '...';
                     $post['text'] = mb_substr($post['text'], 0, 100) . '...';
-                } else {
-                    $post['visits'] = $post['visits'] + 1;
                 }
 
                 $this->posts[$key] = $post;
