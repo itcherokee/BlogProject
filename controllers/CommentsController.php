@@ -4,12 +4,12 @@ class CommentsController extends BaseController
 {
     protected $postId = null;
 
-    public function __construct($blog)
+    public function __construct($blog_name)
     {
-        parent::__construct($blog);
+        parent::__construct($blog_name);
     }
 
-    public function create($postId)
+    public function create($params)
     {
         $this->actionName = __FUNCTION__;
 
@@ -27,21 +27,20 @@ class CommentsController extends BaseController
 
             if (!empty($name) && !empty($text) & !empty('postId')) {
                 $commentId = $this->modelData->createComment($text, $name, $email, $post_id);
-                $params[] = $post_id;
+                $parameters[] = $post_id;
                 if ($commentId > 0) {
                     $this->addInfoMessage("Comment added.");
 
-                    $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $params);
+                    $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $parameters);
                 } else {
                     $this->addErrorMessage("Error adding comment.");
-                    $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $params);
+                    $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $parameters);
                 }
             } else {
                 $this->addErrorMessage("Name & Text must have a value!");
-               // $this->postId = $post_id;
             }
         } else {
-            $this->postId = $postId[0];
+            $this->postId = $params[0];
         }
 
         $_SESSION['formToken'] = uniqid(mt_rand(), true);
@@ -66,7 +65,7 @@ class CommentsController extends BaseController
             $this->addErrorMessage("Error deleting comment");
         }
 
-        $post[] = $post_id;
-        $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $post);
+        $parameters[] = $post_id;
+        $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $parameters);
     }
 }

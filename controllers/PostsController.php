@@ -12,9 +12,9 @@ class PostsController extends BaseController
     protected $startDate;
     protected $endDate;
 
-    public function __construct($blog)
+    public function __construct($blog_name)
     {
-        parent::__construct($blog);
+        parent::__construct($blog_name);
         $this->pageSize = 3;
     }
 
@@ -38,8 +38,8 @@ class PostsController extends BaseController
 
                 // check is it historical posts reqest
                 if (isset($_GET['year']) && isset($_GET['month'])) {
-                    $dtime = \DateTime::createFromFormat("Y/m/d", $_GET['year'] . '/' . $_GET['month'] . '/1');
-                    $startDateTimestamp = $dtime->getTimestamp();
+                    $date_time = \DateTime::createFromFormat("Y/m/d", $_GET['year'] . '/' . $_GET['month'] . '/1');
+                    $startDateTimestamp = $date_time->getTimestamp();
                     $this->startDate = date("Y-m-d", $startDateTimestamp);
                     $this->endDate = date("Y-m-t", $startDateTimestamp);
                     $this->historyPeriod = 'year=' . $_GET['year'] . '&month=' . $_GET['month'];
@@ -47,16 +47,16 @@ class PostsController extends BaseController
                     $this->historyPeriod = '';
                     $minMaxPosts = $this->modelData->getOldestAndNewestPostDate($this->blogName);
                     if ($minMaxPosts[0]['newest'] != null) {
-                        $dtime = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['oldest']);
-                        $startDateTimestamp = $dtime->getTimestamp();
+                        $date_time = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['oldest']);
+                        $startDateTimestamp = $date_time->getTimestamp();
                         $this->startDate = date("Y-m-d", $startDateTimestamp);
-                        $dtime = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['newest']);
-                        $startDateTimestamp = $dtime->getTimestamp();
+                        $date_time = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['newest']);
+                        $startDateTimestamp = $date_time->getTimestamp();
                         $this->endDate = date("Y-m-t", $startDateTimestamp);
                     } else {
-                        $currentDate = time();
-                        $this->startDate = date("Y-m-d", $currentDate);
-                        $this->endDate = date("Y-m-t", $currentDate);
+                        $current_date = time();
+                        $this->startDate = date("Y-m-d", $current_date);
+                        $this->endDate = date("Y-m-t", $current_date);
                     }
                 }
 
@@ -103,7 +103,6 @@ class PostsController extends BaseController
                     $post['tags'] = $tags;
                 }
 
-
                 $this->posts[$key] = $post;
             }
 
@@ -132,20 +131,20 @@ class PostsController extends BaseController
                 $user = strtolower($this->blogName);
             }
 
-            $postOwner = $this->modelData->getLoggedUserId($user);
+            $post_owner = $this->modelData->getLoggedUserId($user);
             $tags = preg_split('/,\s+/', $_POST['tags'], -1, PREG_SPLIT_NO_EMPTY);
-            if (!empty($title) && !empty($text) && !empty($date) && count($tags) > 0 && $postOwner != 0) {
-                $postId = $this->modelData->createPost($title, $text, $date, $postOwner);
-                if ($postId > 0) {
-                    foreach ($tags as $tagName) {
-                        $tagName = strtolower(trim($tagName));
-                        $tagId = $this->modelData->checkTagExists($tagName);
-                        if ($tagId == null) {
-                            $tagId = $this->modelData->createTag($tagName);
+            if (!empty($title) && !empty($text) && !empty($date) && count($tags) > 0 && $post_owner != 0) {
+                $post_id = $this->modelData->createPost($title, $text, $date, $post_owner);
+                if ($post_id > 0) {
+                    foreach ($tags as $tag_name) {
+                        $tag_name = strtolower(trim($tag_name));
+                        $tag_id = $this->modelData->checkTagExists($tag_name);
+                        if ($tag_id == null) {
+                            $tag_id = $this->modelData->createTag($tag_name);
                         }
 
-                        if ($tagId > 0) {
-                            if (!$this->modelData->linkTagToPost($tagId, $postId)) {
+                        if ($tag_id > 0) {
+                            if (!$this->modelData->linkTagToPost($tag_id, $post_id)) {
                                 $this->addErrorMessage("Error linking tag to post.");
                             }
                         } else {
@@ -180,8 +179,8 @@ class PostsController extends BaseController
             foreach ($tags as $tag) {
                 if ($this->modelData->unlinkTagsFromPost($tag['id'], $post_id) < 0) {
                     $this->addErrorMessage("Could not delete linked tags from post");
-                    $post[] = $post_id;
-                    $this->redirect($this->blogName, $this->controllerName, $this->actionName, $post);
+                    $parameters[] = $post_id;
+                    $this->redirect($this->blogName, $this->controllerName, $this->actionName, $parameters);
                 }
             }
         }
@@ -192,8 +191,8 @@ class PostsController extends BaseController
             foreach ($comments as $comment) {
                 if ($this->modelData->deleteComment($comment['id']) < 0) {
                     $this->addErrorMessage("Could not delete linked comment from post");
-                    $post[] = $post_id;
-                    $this->redirect($this->blogName, $this->controllerName, $this->actionName, $post);
+                    $parameters[] = $post_id;
+                    $this->redirect($this->blogName, $this->controllerName, $this->actionName, $parameters);
                 }
             }
         }
@@ -228,8 +227,8 @@ class PostsController extends BaseController
             if (!empty($title) && !empty($text)) {
                 if ($this->modelData->updatePost($title, $text, $post_id) > 0) {
                     $this->addInfoMessage("Post edited.");
-                    $post[] = $post_id;
-                    $this->redirect($this->blogName, $this->controllerName, DEFAULT_ACTION, $post);
+                    $parameters[] = $post_id;
+                    $this->redirect($this->blogName, $this->controllerName, DEFAULT_ACTION, $parameters);
                 } else {
                     $this->addErrorMessage("Error editing post.");
                 }
@@ -251,33 +250,27 @@ class PostsController extends BaseController
             $tag = trim($_POST['tag']);
         }
 
-        // loads all posts historically by year, by month, by day
         $this->historyList = $this->modelData->getPostsHistorically($this->blogName);
-
-        // loads most popular tags
         $this->mostPopularTags = $this->modelData->getMostPopularTags($this->blogName);
-
         $this->isSinglePost = false;
-
         $this->historyPeriod = '';
-        $minMaxPosts = $this->modelData->getOldestAndNewestPostDate($this->blogName);
+        $min_max_posts = $this->modelData->getOldestAndNewestPostDate($this->blogName);
 
-        if ($minMaxPosts[0]['newest'] != null) {
-            $dtime = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['oldest']);
-            $startDateTimestamp = $dtime->getTimestamp();
+        if ($min_max_posts[0]['newest'] != null) {
+            $date_time = \DateTime::createFromFormat("Y-m-d", $min_max_posts[0]['oldest']);
+            $startDateTimestamp = $date_time->getTimestamp();
             $this->startDate = date("Y-m-d", $startDateTimestamp);
-            $dtime = \DateTime::createFromFormat("Y-m-d", $minMaxPosts[0]['newest']);
-            $startDateTimestamp = $dtime->getTimestamp();
+            $date_time = \DateTime::createFromFormat("Y-m-d", $min_max_posts[0]['newest']);
+            $startDateTimestamp = $date_time->getTimestamp();
             $this->endDate = date("Y-m-t", $startDateTimestamp);
         } else {
-            $currentDate = time();
-            $this->startDate = date("Y-m-d", $currentDate);
-            $this->endDate = date("Y-m-t", $currentDate);
+            $current_date = time();
+            $this->startDate = date("Y-m-d", $current_date);
+            $this->endDate = date("Y-m-t", $current_date);
         }
 
         $this->lastPage = (int)floor($this->modelData->countAllPostsPerBlogPerTag($this->blogName, $tag, $this->startDate, $this->endDate) / $this->pageSize);
 
-        // calculate navigation
         $this->currentPage = 0;
         if (isset($_GET['page'])) {
             $this->currentPage = $_GET['page'];
@@ -304,12 +297,12 @@ class PostsController extends BaseController
 
             $tags = $this->modelData->getAllTagsPerPost($post['id']);
             if (count($tags) > 0) {
-                $combinedTags = array();
+                $combined_tags = array();
                 foreach ($tags as $tag) {
-                    $combinedTags[] = $tag['name'];
+                    $combined_tags[] = $tag['name'];
                 }
 
-                $tags = implode(', ', $combinedTags);
+                $tags = implode(', ', $combined_tags);
                 $post['tags'] = $tags;
             }
 

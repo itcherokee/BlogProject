@@ -9,7 +9,6 @@ abstract class BaseController
     protected $isPost = false;
     protected $session = null;
     protected $blogName = null;
-
     protected $pageSize = 3;
 
     public function __construct($blog_name)
