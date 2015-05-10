@@ -2,8 +2,6 @@
 namespace CONTROLLERS;
 abstract class BaseController
 {
-    private $routeToViews;
-    private $templateName;
     protected $controllerName = DEFAULT_CONTROLLER;
     protected $actionName = DEFAULT_ACTION;
     protected $modelData = null;
@@ -22,25 +20,21 @@ abstract class BaseController
         $preTitle = $this->blogName != null ? $this->blogName . ' - ' : '';
         $this->title = $preTitle . $this->controllerName;
         $this->modelData = new $modelFile();
-        //$this->session = $app->getSession();
         session_set_cookie_params(1800, "/");
-
         session_start();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->isPost = true;
         } else {
             $this->isPost = false;
         }
-    }
 
-    public function index()
-    {
+        $this->checkBlogExists();
     }
 
     public function renderView($otherAction = null, $includeLayout = true)
     {
         // if (!$this->isViewRendered) {
-        $selectedAction = $otherAction == null ? strtolower($this->actionName) : strtolower($otherAction) ;
+        $selectedAction = $otherAction == null ? strtolower($this->actionName) : strtolower($otherAction);
         $viewFileName = 'views/' . strtolower($this->controllerName) . '/' . $selectedAction . '.php';
         if ($includeLayout) {
             $headerFile = 'views/layouts/header.php';
@@ -69,8 +63,8 @@ abstract class BaseController
         $url .= '/' . urlencode($actionName);
 
         if ($params != null) {
-            $encodedParams = array_map($params, 'urlencode');
-            $url .= implode('/', $encodedParams);
+            $encodedParams = array_map( 'urlencode', $params);
+            $url .= '/' . implode('/', $encodedParams);
         }
 
         $this->redirectToUrl($url);
@@ -85,8 +79,7 @@ abstract class BaseController
 
     public function isLoggedIn()
     {
-        if ( isset( $_SESSION['username'] ) ) {
-       // if (!empty($this->session->username)) {
+        if (isset($_SESSION['username'])) {
             return true;
         }
 
@@ -96,14 +89,14 @@ abstract class BaseController
     public function getUsername()
     {
         if ($this->isLoggedIn()) {
-             return $_SESSION['username'];
-            //return $this->session->username;
+            return $_SESSION['username'];
         }
 
         return null;
     }
 
-    public function isOwnerOfBlog(){
+    public function isOwnerOfBlog()
+    {
         return $this->modelData->isOwnerOfBlog($this->blogName, $this->getUsername());
     }
 
@@ -119,19 +112,11 @@ abstract class BaseController
 
     function addMessage($msg, $type)
     {
-//        if (empty($this->session->messages)) {
-//            $this->session->messages = array();
-//        };
-//
-//        $arr = $this->session->messages;
-//        array_push($arr, array('text' => $msg, 'type' => $type));
-//        $this->session->messages = $arr;
-        //array_push($this->session->messages, array('text' => $msg, 'type' => $type));
         if (!isset($_SESSION['messages'])) {
             $_SESSION['messages'] = array();
         };
-        array_push($_SESSION['messages'],
-            array('text' => $msg, 'type' => $type));
+
+        array_push($_SESSION['messages'], array('text' => $msg, 'type' => $type));
     }
 
     public function authorize()
@@ -139,6 +124,16 @@ abstract class BaseController
         if (!$this->isLoggedIn()) {
             $this->addErrorMessage("Please login first");
             $this->redirect(SYSTEM_BLOG, "users", "login");
+        }
+    }
+
+    private function checkBlogExists()
+    {
+        if ($this->blogName != SYSTEM_BLOG && $this->blogName != ADMIN_BLOG && $this->blogName !=null) {
+            if (!$this->modelData->isBlogExists($this->blogName)) {
+                $this->addErrorMessage("No such blog exists");
+                $this->redirect(SYSTEM_BLOG, DEFAULT_CONTROLLER, DEFAULT_ACTION);
+            }
         }
     }
 }

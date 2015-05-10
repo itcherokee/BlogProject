@@ -8,7 +8,7 @@ class CommentsModel extends BaseModel
         parent::__construct();
     }
 
-    public function CreateComment($text, $username, $email, $post_id)
+    public function createComment($text, $username, $email, $post_id)
     {
         $query = "INSERT INTO comments (text, username, useremail, post_id) VALUES(?, ?, ?, ?)";
         $statement = $this->db->prepare($query);

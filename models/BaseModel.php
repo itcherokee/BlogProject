@@ -47,5 +47,18 @@ class BaseModel
         return $result;
     }
 
+    public function isBlogExists($blogName)
+    {
+        $statement = $this->db->prepare("SELECT username FROM users WHERE username = ?");
+        $statement->bind_param("s", $blogName);
+        $statement->execute();
+        $result = null;
+        $statement->bind_result($result);
+        $statement->fetch();
+        if ($result != null) {
+            return true;
+        }
 
+        return false;
+    }
 }

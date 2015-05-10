@@ -49,29 +49,32 @@
                 echo '</span>';
                 echo '</div>'; // close footer
                 echo '</div>'; // close panel
-                if ($this->isSinglePost){
-                    echo " <a href='/" . $this->blogName . "/comments/create/" . htmlspecialchars($post['id']) ." class='btn btn-default btn-xs'>Add New Comment</a>";
+                if ($this->isSinglePost) {
 
                     echo '<div class="panel panel-default">';
                     echo '<div class="panel-heading">';
-                    echo '<h3 class="panel-title">Comments:</h3>';
+                    echo '<h3 class="panel-title">Comments: ';
+                    echo " <a href='/" . $this->blogName . "/comments/create/" . htmlspecialchars($post['id']) . "' class='btn btn-default btn-xs'>Add New Comment</a>";
+                    echo ' </h3>';
                     echo '</div>'; // close heading
 
                     echo '<div class="panel-body small">';
-                    foreach($post['comments'] as $comment){
-                        echo '<div>';
-                        echo htmlspecialchars($comment['text']);
-                        echo '</div>';
-                        echo '<div>';
-                        echo '<span>written by [' . htmlspecialchars($comment['username']) . ']</span> ';
-                        if ($this->isOwnerOfBlog()) {
-                            echo "<a href='/" . $this->blogName . "/comments/edit/" . htmlspecialchars($comment['id']) . "'> ";
-                            echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
-                            echo "<a href='/" . $this->blogName . "/comments/delete/" . htmlspecialchars($comment['id']) . "'> ";
-                            echo "<span class='glyphicon glyphicon-trash'></span></a>";
+                    if (!empty($post['comments'])) {
+                        foreach ($post['comments'] as $comment) {
+                            echo '<div>';
+                            echo htmlspecialchars($comment['text']);
+                            echo '</div>';
+                            echo '<div>';
+                            echo '<span>written by [' . htmlspecialchars($comment['username']) . ']</span> ';
+                            if ($this->isOwnerOfBlog()) {
+                                echo "<a href='/" . $this->blogName . "/comments/edit/" . htmlspecialchars($comment['id']) . "'> ";
+                                echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
+                                echo "<a href='/" . $this->blogName . "/comments/delete/" . htmlspecialchars($comment['id']) . "'> ";
+                                echo "<span class='glyphicon glyphicon-trash'></span></a>";
+                            }
+                            echo '</div>';
+                            echo '<hr/>';
                         }
-                        echo '</div>';
-                        echo '<hr/>';
                     }
                     echo '</div>'; // close body
 

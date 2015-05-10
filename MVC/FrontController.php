@@ -41,18 +41,25 @@ class FrontController
                     // fallback to default action of that controller
                     call_user_func_array(array($instance, DEFAULT_ACTION), array());
                 }
-            } else{
+            } else {
                 // forward to post controller for selected blog
                 $defaultController = '\\CONTROLLERS\\PostsController';
                 $instance = new $defaultController($this->blog);
                 call_user_func_array(array($instance, DEFAULT_ACTION), array());
+//
             }
+
         } else {
             // fallback to default controller and action - set in app.php config file
-            $defaultController = '\\CONTROLLERS\\' . DEFAULT_CONTROLLER . 'Controller';
-            $instance = new $defaultController(SYSTEM_BLOG);
-            call_user_func_array(array($instance, DEFAULT_ACTION), array());
+            $this->callDefaultRoute();
         }
+    }
+
+    private function callDefaultRoute()
+    {
+        $defaultController = '\\CONTROLLERS\\' . DEFAULT_CONTROLLER . 'Controller';
+        $instance = new $defaultController(SYSTEM_BLOG);
+        call_user_func_array(array($instance, DEFAULT_ACTION), array());
     }
 
     /**
