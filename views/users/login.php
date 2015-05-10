@@ -5,6 +5,7 @@
         </div>
         <div class="panel-body">
             <form class="form-horizontal" action="/home/users/login" method="POST">
+                <input type="hidden" name="formToken" value="<?= $_SESSION['formToken'] ?>" />
                 <div class="form-group row">
                     <label for="username" class="col-xs-2 control-label">Username:</label>
 

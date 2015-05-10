@@ -4,8 +4,11 @@
             <h3 class="panel-title">New Comment</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" action="/<?php echo $this->blogName ?>/comments/create" method="POST">
-               <input type="hidden" name="postId" value="<?php echo $this->postId; ?>">
+            <form class="form-horizontal" action="/<?php echo htmlspecialchars($this->blogName); ?>/comments/create"
+                  method="POST">
+                <input type="hidden" name="postId" value="<?php echo htmlspecialchars($this->postId); ?>">
+                <input type="hidden" name="formToken" value="<?= $_SESSION['formToken'] ?>"/>
+
                 <div class="form-group">
                     <label for="name" class="col-xs-12 col-sm-2 control-label">Name:</label>
 
@@ -31,7 +34,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
                         <input type="submit" class="btn btn-default" value="Add comment"/>
-                        <a href="/<?php echo $this->blogName ?>/posts/index/<?php echo $this->postId?>">Cancel</a>
+                        <a href="/<?php echo htmlspecialchars($this->blogName); ?>/posts/index/<?php echo htmlspecialchars($this->postId); ?>">Cancel</a>
                     </div>
                 </div>
             </form>

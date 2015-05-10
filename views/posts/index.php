@@ -3,11 +3,12 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 <?php
-                echo "<strong><a href='/" . $this->blogName . "/posts/index'>";
-                echo ucfirst($this->blogName);
+                echo "<strong><a href='/" . htmlspecialchars($this->blogName) . "/posts/index'>";
+                echo htmlspecialchars(ucfirst($this->blogName));
                 echo "</a></strong>'s blog";
                 if ($this->isOwnerOfBlog()) {
-                    echo " <a href='/" . $this->blogName . "/posts/create' class='btn btn-default btn-xs'>Add New Post</a>";
+                    echo " <a href='/" . htmlspecialchars($this->blogName)
+                        . "/posts/create' class='btn btn-default btn-xs'>Add New Post</a>";
                 }
                 ?>
             </h3>
@@ -19,7 +20,8 @@
 
                 echo '<div class="panel-heading">';
                 echo '<h3 class="panel-title">';
-                echo "<a href='/" . $this->blogName . "/posts/index/" . htmlspecialchars($post['id']) . "'> ";
+                echo "<a href='/" . htmlspecialchars($this->blogName) . "/posts/index/"
+                    . htmlspecialchars($post['id']) . "'> ";
                 echo htmlspecialchars($post['title']);
                 echo '</a>';
                 echo '</h3>';
@@ -33,9 +35,11 @@
                 echo '<div>';
                 echo '<span class="">[' . htmlspecialchars($post['date']) . ']</span> ';
                 if ($this->isOwnerOfBlog()) {
-                    echo "<a href='/" . $this->blogName . "/posts/edit/" . htmlspecialchars($post['id']) . "'> ";
+                    echo "<a href='/" . htmlspecialchars($this->blogName) . "/posts/edit/"
+                        . htmlspecialchars($post['id']) . "'> ";
                     echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
-                    echo "<a href='/" . $this->blogName . "/posts/delete/" . htmlspecialchars($post['id']) . "'> ";
+                    echo "<a href='/" . htmlspecialchars($this->blogName) . "/posts/delete/"
+                        . htmlspecialchars($post['id']) . "'> ";
                     echo "<span class='glyphicon glyphicon-trash'></span></a>";
                 }
                 echo '</div>';
@@ -54,7 +58,8 @@
                     echo '<div class="panel panel-default">';
                     echo '<div class="panel-heading">';
                     echo '<h3 class="panel-title">Comments: ';
-                    echo " <a href='/" . $this->blogName . "/comments/create/" . htmlspecialchars($post['id']) . "' class='btn btn-default btn-xs'>Add New Comment</a>";
+                    echo " <a href='/" . htmlspecialchars($this->blogName) . "/comments/create/"
+                        . htmlspecialchars($post['id']) . "' class='btn btn-default btn-xs'>Add New Comment</a>";
                     echo ' </h3>';
                     echo '</div>'; // close heading
 
@@ -67,10 +72,10 @@
                             echo '<div>';
                             echo '<span>written by [' . htmlspecialchars($comment['username']) . ']</span> ';
                             if ($this->isOwnerOfBlog()) {
-                                echo "<a href='/" . $this->blogName . "/comments/edit/"
+                                echo "<a href='/" . htmlspecialchars($this->blogName) . "/comments/edit/"
                                     . htmlspecialchars($comment['id']) . '/'. htmlspecialchars($post['id']) . "'> ";
                                 echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
-                                echo "<a href='/" . $this->blogName . "/comments/delete/"
+                                echo "<a href='/" . htmlspecialchars($this->blogName) . "/comments/delete/"
                                     . htmlspecialchars($comment['id']) . '/'. htmlspecialchars($post['id']) .  "'> ";
                                 echo "<span class='glyphicon glyphicon-trash'></span></a>";
                             }
@@ -79,24 +84,22 @@
                         }
                     }
                     echo '</div>'; // close body
-
                     echo '</div>'; // close panel
                 }
-
             }
             ?>
 
             <?php if (!$this->isSinglePost): ?>
                 <nav>
                     <ul class="pager small">
-                        <li class="previous <?php echo $this->currentPage == $this->firstPage ? 'disabled' : '' ?>">
-                            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage - 1;
-                            echo empty($this->historyPeriod) ? "" : "&" . $this->historyPeriod; ?>">
+                        <li class="previous <?= $this->currentPage == $this->firstPage ? 'disabled' : '' ?>">
+                            <a href="/<?= htmlspecialchars($this->blogName); ?>/posts/index?page=<?= htmlspecialchars($this->currentPage - 1);
+                            echo empty($this->historyPeriod) ? "" : "&" . htmlspecialchars($this->historyPeriod); ?>">
                                 <span>&larr;</span>Newer</a>
                         </li>
-                        <li class="next <?php echo $this->currentPage == $this->lastPage ? 'disabled' : '' ?>">
-                            <a href="/<?= $this->blogName ?>/posts/index?page=<?php echo $this->currentPage + 1;
-                            echo empty($this->historyPeriod) ? "" : "&" . $this->historyPeriod; ?>">
+                        <li class="next <?= $this->currentPage == $this->lastPage ? 'disabled' : '' ?>">
+                            <a href="/<?= htmlspecialchars($this->blogName); ?>/posts/index?page=<?= htmlspecialchars($this->currentPage + 1);
+                            echo empty($this->historyPeriod) ? "" : "&" . htmlspecialchars($this->historyPeriod); ?>">
                                 Older<span>&rarr;</span></a>
                         </li>
                     </ul>
@@ -119,25 +122,25 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapse<?php echo $key ?>">
-                                        <em><?php echo $key ?></em>
+                                       href="#collapse<?= htmlspecialchars($key) ?>">
+                                        <em><?= htmlspecialchars($key); ?></em>
                                     </a>
                                 </h4>
                             </div>
 
-                            <div id="collapse<?php echo $key ?>"
-                                 class="panel-collapse collapse <?php echo $isFirstPanel ? 'in' : '';
+                            <div id="collapse<?= htmlspecialchars($key) ?>"
+                                 class="panel-collapse collapse <?= $isFirstPanel ? 'in' : '';
                                  $isFirstPanel = false ?>">
                                 <ul class="list-group small">
                                     <?php foreach ($year as $month => $counts) : ?>
                                         <li class="list-group-item">
-                                            <span class="badge small"><?php echo $counts ?></span>
+                                            <span class="badge small"><?= htmlspecialchars($counts); ?></span>
                                             <?php
                                             $dateObj = DateTime::createFromFormat('!m', $month);
                                             $monthName = $dateObj->format('F');
                                             ?>
-                                            <a href="/<?= $this->blogName ?>/posts/index?year=<?php echo $key; ?>&month=<?php echo $month ?>">
-                                                <?php echo $monthName; ?>
+                                            <a href="/<?= htmlspecialchars($this->blogName) ?>/posts/index?year=<?= htmlspecialchars($key); ?>&month=<?= htmlspecialchars($month); ?>">
+                                                <?= htmlspecialchars($monthName); ?>
                                             </a>
                                         </li>
                                     <?php endforeach; ?>
@@ -155,7 +158,7 @@
             </ul>
         <?php endif; ?>
     </div>
-    <form role="search" method="POST" action="/<?php echo $this->blogName ?>/posts/search">
+    <form role="search" method="POST" action="/<?= htmlspecialchars($this->blogName); ?>/posts/search">
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search by tag..." name="tag">
@@ -173,8 +176,8 @@
             echo '<ul class="list-group">';
             foreach ($this->mostPopularTags as $tag) {
                 echo '<li class="list-group-item">';
-                echo '<span class="badge">' . $tag['counts'] . '</span>';
-                echo $tag['name'];
+                echo '<span class="badge">' . htmlspecialchars($tag['counts']) . '</span>';
+                echo htmlspecialchars($tag['name']);
                 echo '</li>';
             }
             echo "</ul>";

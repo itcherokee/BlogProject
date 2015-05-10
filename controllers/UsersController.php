@@ -15,7 +15,12 @@ class UsersController extends BaseController
     public function login()
     {
         $this->actionName = __FUNCTION__;
+
         if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                throw new \Exception('Invalid request!');
+                exit;
+            }
             $username = $_POST['username'];
             $password = $_POST['password'];
             $loginSuccess = $this->modelData->login($username, $password);
@@ -31,39 +36,49 @@ class UsersController extends BaseController
             $this->redirect($username, 'posts', DEFAULT_ACTION);
         }
 
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
         $this->renderView();
     }
 
     public function register()
     {
         $this->actionName = __FUNCTION__;
+
         if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                throw new \Exception('Invalid request!');
+                exit;
+            }
+
             $username = trim($_POST['username']);
             $password = trim($_POST['password']);
 
             // TODO: to be modified when site start to support users without blogs
             $hasBlog = true;
-//            if (!empty($_POST['has-blog'])){
-//                $hasBlog = true;
-//            }
 
             if (!empty($username) && !empty($password)) {
-                $registrationSuccess = $this->modelData->register($username, $password, $hasBlog);
-                if ($registrationSuccess) {
-                    $_SESSION['username'] = $username;
-                    $this->addInfoMessage("Successful registration");
-                } else {
-                    $this->addErrorMessage("Registration error!");
-                    $this->redirect(SYSTEM_BLOG, $this->controllerName, $this->actionName);
-                }
+                if (strlen($username) > 2 && strlen($password) > 4) {
+                    $registrationSuccess = $this->modelData->register($username, $password, $hasBlog);
+                    if ($registrationSuccess) {
+                        $_SESSION['username'] = $username;
+                        $this->addInfoMessage("Successful registration");
+                    } else {
+                        $this->addErrorMessage("Registration error!");
+                        $this->redirect(SYSTEM_BLOG, $this->controllerName, $this->actionName);
+                    }
 
-                $this->redirect($username, 'posts', DEFAULT_ACTION);
+                    $this->redirect($username, 'posts', DEFAULT_ACTION);
+                } else {
+                    $this->addErrorMessage("Registration error - Username & Password cannot be less than 4 symbols!");
+                }
+            } else {
+                $this->addErrorMessage("Registration error - none of fields cannot be empty!");
             }
 
-            $this->addErrorMessage("Registration error - none of fields cannot be empty!");
             $this->redirect(SYSTEM_BLOG, $this->controllerName, $this->actionName);
         }
 
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
         $this->renderView();
     }
 

@@ -29,13 +29,13 @@
             <nav>
                 <ul class="pager">
                     <li class="previous <?php echo $this->currentPage == $this->firstPage ? 'disabled' : '' ?>">
-                        <a href="/<?= $this->blogName ?>/home/index?page=<?php echo $this->currentPage - 1; ?>">
+                        <a href="/<?= htmlspecialchars($this->blogName); ?>/home/index?page=<?php echo htmlspecialchars($this->currentPage - 1); ?>">
                             <span>&larr;</span>
                             Previous
                         </a>
                     </li>
                     <li class="next <?php echo $this->currentPage == $this->lastPage ? 'disabled' : '' ?>">
-                        <a href="/<?= $this->blogName ?>/home/index?page=<?php echo $this->currentPage + 1; ?>">
+                        <a href="/<?= htmlspecialchars($this->blogName); ?>/home/index?page=<?php echo htmlspecialchars($this->currentPage + 1); ?>">
                             Next
                             <span>&rarr;</span>
                         </a>

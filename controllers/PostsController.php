@@ -119,6 +119,11 @@ class PostsController extends BaseController
         $this->actionName = __FUNCTION__;
 
         if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                throw new \Exception('Invalid request!');
+                exit;
+            }
+
             $title = trim($_POST['title']);
             $text = trim($_POST['text']);
             $date = strftime("%Y-%m-%d", time());
@@ -158,12 +163,14 @@ class PostsController extends BaseController
             }
         }
 
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
         $this->renderView();
     }
 
     public function delete($params)
     {
         $this->authorize();
+
         $post_id = $params[0];
         $this->actionName = __FUNCTION__;
 
@@ -209,6 +216,11 @@ class PostsController extends BaseController
         //TODO: include editing of tags for post
 
         if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                throw new \Exception('Invalid request!');
+                exit;
+            }
+
             $title = trim($_POST['title']);
             $text = trim($_POST['text']);
 
@@ -226,6 +238,7 @@ class PostsController extends BaseController
             }
         }
 
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
         $this->renderView();
     }
 

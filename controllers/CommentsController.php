@@ -8,18 +8,17 @@ class CommentsController extends BaseController
     {
         parent::__construct($blog);
     }
-//
-//    public function index()
-//    {
-//        $this->redirect(SYSTEM_BLOG, DEFAULT_CONTROLLER, DEFAULT_ACTION);
-//    }
 
     public function create($postId)
     {
         $this->actionName = __FUNCTION__;
 
-
         if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                throw new \Exception('Invalid request!');
+                exit;
+            }
+
             $name = trim($_POST['name']);
             $text = trim($_POST['text']);
             $email = trim($_POST['email']);
@@ -45,6 +44,7 @@ class CommentsController extends BaseController
             $this->postId = $postId[0];
         }
 
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
         $this->renderView();
     }
 
