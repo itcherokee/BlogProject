@@ -23,48 +23,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PostsController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
+      <file leaf-file-name="CommentsModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="202" column="0" selection-start="8243" selection-end="8243" vertical-scroll-proportion="-3.0769231" vertical-offset="1144" max-vertical-offset="3043">
+            <state line="18" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="21.576923" vertical-offset="867" max-vertical-offset="4284">
               <folding>
-                <element signature="e#485#4880#0" expanded="false" />
-                <element signature="e#6695#8100#0" expanded="false" />
+                <marker date="1431260436159" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
+                <marker date="1431260436159" expanded="true" signature="587:628" placeholder="UPDATE comme..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/posts/edit.php">
+      <file leaf-file-name="HomeController.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="136" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.72511846" vertical-offset="0" max-vertical-offset="731">
+            <state line="12" column="27" selection-start="283" selection-end="283" vertical-scroll-proportion="0.5862069" vertical-offset="0" max-vertical-offset="731">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostsModel.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/PostsModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="20" selection-start="8912" selection-end="8947" vertical-scroll-proportion="-7.576923" vertical-offset="959" max-vertical-offset="1394">
-              <folding>
-                <element signature="e#472#1067#0" expanded="false" />
-                <element signature="e#1073#1819#0" expanded="false" />
-                <element signature="e#1825#2334#0" expanded="false" />
-                <element signature="e#2340#3017#0" expanded="false" />
-                <element signature="e#3023#3386#0" expanded="false" />
-                <element signature="e#3392#3812#0" expanded="false" />
-                <element signature="e#3818#4127#0" expanded="false" />
-                <element signature="e#4133#4450#0" expanded="false" />
-                <element signature="e#4760#5164#0" expanded="false" />
-                <element signature="e#5170#5417#0" expanded="false" />
-                <element signature="e#5423#5881#0" expanded="false" />
-                <element signature="e#5887#6297#0" expanded="false" />
-                <element signature="e#6558#7206#0" expanded="false" />
-                <element signature="e#7212#7639#0" expanded="false" />
-                <element signature="e#7645#8890#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -97,8 +72,6 @@
         <option value="$PROJECT_DIR$/MVC/Database.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/views/layouts/messages.php" />
-        <option value="$PROJECT_DIR$/controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/models/HomeModel.php" />
         <option value="$PROJECT_DIR$/views/layouts/footer.php" />
         <option value="$PROJECT_DIR$/views/users/login.php" />
         <option value="$PROJECT_DIR$/views/users/register.php" />
@@ -109,15 +82,20 @@
         <option value="$PROJECT_DIR$/MVC/FrontController.php" />
         <option value="$PROJECT_DIR$/views/comments/create.php" />
         <option value="$PROJECT_DIR$/views/layouts/header.php" />
-        <option value="$PROJECT_DIR$/controllers/BaseController.php" />
         <option value="$PROJECT_DIR$/views/posts/index.php" />
         <option value="$PROJECT_DIR$/controllers/CommentsController.php" />
-        <option value="$PROJECT_DIR$/models/CommentsModel.php" />
         <option value="$PROJECT_DIR$/models/BaseModel.php" />
         <option value="$PROJECT_DIR$/models/UsersModel.php" />
-        <option value="$PROJECT_DIR$/models/PostsModel.php" />
-        <option value="$PROJECT_DIR$/controllers/PostsController.php" />
         <option value="$PROJECT_DIR$/views/posts/edit.php" />
+        <option value="$PROJECT_DIR$/models/PostsModel.php" />
+        <option value="$PROJECT_DIR$/models/AdminModel.php" />
+        <option value="$PROJECT_DIR$/controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/views/admin/index.php" />
+        <option value="$PROJECT_DIR$/controllers/BaseController.php" />
+        <option value="$PROJECT_DIR$/models/HomeModel.php" />
+        <option value="$PROJECT_DIR$/controllers/PostsController.php" />
+        <option value="$PROJECT_DIR$/models/CommentsModel.php" />
+        <option value="$PROJECT_DIR$/controllers/HomeController.php" />
       </list>
     </option>
   </component>
@@ -224,7 +202,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layouts" />
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -274,8 +270,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\Blog\views\comments" />
+      <recent name="C:\xampp\htdocs\Blog\views\admin" />
       <recent name="C:\xampp\htdocs\Blog\models" />
+      <recent name="C:\xampp\htdocs\Blog\views\comments" />
       <recent name="C:\xampp\htdocs\Blog\controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -368,7 +365,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16045381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37166324" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17864476" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -428,11 +425,6 @@
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/controllers/BaseController.php</url>
-          <line>69</line>
-          <option name="timeStamp" value="179" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/views/layouts/header.php</url>
           <line>63</line>
           <option name="timeStamp" value="187" />
@@ -447,43 +439,14 @@
           <line>13</line>
           <option name="timeStamp" value="190" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/controllers/PostsController.php</url>
-          <line>202</line>
-          <option name="timeStamp" value="193" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="194" />
+      <option name="time" value="199" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding>
-            <element signature="e#485#4880#0" expanded="false" />
-            <element signature="e#6695#8100#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MVC/FrontController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="64" selection-start="852" selection-end="852" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1173">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="48" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="22" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="374">
@@ -499,10 +462,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
-          <folding>
-            <element signature="e#485#4880#0" expanded="false" />
-            <element signature="e#6695#8100#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -557,10 +517,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
-          <folding>
-            <element signature="e#485#4880#0" expanded="false" />
-            <element signature="e#6695#8100#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -625,13 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/HomeModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="552" selection-end="623" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="578">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/layouts/messages.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="0" selection-start="389" selection-end="389" vertical-scroll-proportion="0.38901603" vertical-offset="0" max-vertical-offset="437">
@@ -660,13 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/users/register.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="10" selection-start="1853" selection-end="1853" vertical-scroll-proportion="-9.538462" vertical-offset="415" max-vertical-offset="765">
@@ -688,13 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="42" selection-start="207" selection-end="207" vertical-scroll-proportion="3.6923077" vertical-offset="249" max-vertical-offset="731">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MVC/App.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="0" selection-start="1161" selection-end="1161" vertical-scroll-proportion="0.53366584" vertical-offset="466" max-vertical-offset="867">
@@ -709,37 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="5" selection-start="3380" selection-end="3380" vertical-scroll-proportion="0.03862661" vertical-offset="2065" max-vertical-offset="2448">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1588" selection-end="2030" vertical-scroll-proportion="-6.5384617" vertical-offset="799" max-vertical-offset="1309">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="517" selection-end="517" vertical-scroll-proportion="-4.4615383" vertical-offset="207" max-vertical-offset="4318">
-          <folding>
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="UPDATE comme..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="SELECT id, t..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="SELECT id FR..users..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="SELECT id FR..tags..." />
-            <marker date="1431255921046" expanded="true" signature="-1:-1" placeholder="UPDATE posts..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/posts/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="109" selection-start="3624" selection-end="3624" vertical-scroll-proportion="0.31516588" vertical-offset="1057" max-vertical-offset="3247">
@@ -751,17 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="87" selection-start="1765" selection-end="1765" vertical-scroll-proportion="1.2896552" vertical-offset="0" max-vertical-offset="765">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/BaseModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="20" selection-start="1694" selection-end="1712" vertical-scroll-proportion="0.6" vertical-offset="827" max-vertical-offset="1326">
-          <folding>
-            <marker date="1431255920969" expanded="true" signature="-1:-1" placeholder="SELECT usern..users..." />
-            <marker date="1431255920969" expanded="true" signature="-1:-1" placeholder="SELECT usern..users..." />
-            <marker date="1431255920969" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -797,42 +691,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/posts/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="136" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.72511846" vertical-offset="0" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="18" selection-start="549" selection-end="549" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="3247">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/PostsModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="20" selection-start="8912" selection-end="8947" vertical-scroll-proportion="-7.576923" vertical-offset="959" max-vertical-offset="1394">
+        <state line="5" column="0" selection-start="62" selection-end="62" vertical-scroll-proportion="16.807692" vertical-offset="522" max-vertical-offset="1411">
           <folding>
-            <element signature="e#472#1067#0" expanded="false" />
-            <element signature="e#1073#1819#0" expanded="false" />
-            <element signature="e#1825#2334#0" expanded="false" />
-            <element signature="e#2340#3017#0" expanded="false" />
-            <element signature="e#3023#3386#0" expanded="false" />
-            <element signature="e#3392#3812#0" expanded="false" />
-            <element signature="e#3818#4127#0" expanded="false" />
-            <element signature="e#4133#4450#0" expanded="false" />
-            <element signature="e#4760#5164#0" expanded="false" />
-            <element signature="e#5170#5417#0" expanded="false" />
-            <element signature="e#5423#5881#0" expanded="false" />
-            <element signature="e#5887#6297#0" expanded="false" />
-            <element signature="e#6558#7206#0" expanded="false" />
-            <element signature="e#7212#7639#0" expanded="false" />
-            <element signature="e#7645#8890#0" expanded="false" />
+            <element signature="e#144#464#0" expanded="false" />
+            <element signature="e#470#1065#0" expanded="false" />
+            <element signature="e#1071#1817#0" expanded="false" />
+            <element signature="e#1823#2332#0" expanded="false" />
+            <element signature="e#2338#3015#0" expanded="false" />
+            <element signature="e#3021#3384#0" expanded="false" />
+            <element signature="e#3390#3810#0" expanded="false" />
+            <element signature="e#3816#4125#0" expanded="false" />
+            <element signature="e#4131#4448#0" expanded="false" />
+            <element signature="e#4454#4752#0" expanded="false" />
+            <element signature="e#4758#5162#0" expanded="false" />
+            <element signature="e#5168#5415#0" expanded="false" />
+            <element signature="e#5421#5879#0" expanded="false" />
+            <element signature="e#5885#6295#0" expanded="false" />
+            <element signature="e#6301#6550#0" expanded="false" />
+            <element signature="e#6556#7204#0" expanded="false" />
+            <element signature="e#7210#7637#0" expanded="false" />
+            <element signature="e#8894#9217#0" expanded="false" />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="SELECT id, t..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="SELECT id FR..users..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="SELECT id FR..tags..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="UPDATE posts..." />
+            <marker date="1431258161556" expanded="true" signature="-1:-1" placeholder="UPDATE posts..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="57" selection-start="3616" selection-end="3623" vertical-scroll-proportion="-9.961538" vertical-offset="1934" max-vertical-offset="2516">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/HomeModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="631" selection-end="834" vertical-scroll-proportion="-6.1923075" vertical-offset="230" max-vertical-offset="578">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="0" selection-start="1498" selection-end="1544" vertical-scroll-proportion="1.8793104" vertical-offset="196" max-vertical-offset="1054">
+          <folding>
+            <element signature="e#1550#2036#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="202" column="0" selection-start="8243" selection-end="8243" vertical-scroll-proportion="-3.0769231" vertical-offset="1144" max-vertical-offset="3043">
+        <state line="130" column="0" selection-start="5365" selection-end="5365" vertical-scroll-proportion="-16.038462" vertical-offset="1793" max-vertical-offset="5338">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/BaseModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="0" selection-start="1644" selection-end="1644" vertical-scroll-proportion="0.12068965" vertical-offset="978" max-vertical-offset="1326">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="21.576923" vertical-offset="867" max-vertical-offset="4284">
           <folding>
-            <element signature="e#485#4880#0" expanded="false" />
-            <element signature="e#6695#8100#0" expanded="false" />
+            <marker date="1431260436159" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
+            <marker date="1431260436159" expanded="true" signature="587:628" placeholder="UPDATE comme..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/posts/edit.php">
+    <entry file="file://$PROJECT_DIR$/controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="136" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.72511846" vertical-offset="0" max-vertical-offset="731">
+        <state line="12" column="27" selection-start="283" selection-end="283" vertical-scroll-proportion="0.5862069" vertical-offset="0" max-vertical-offset="731">
           <folding />
         </state>
       </provider>

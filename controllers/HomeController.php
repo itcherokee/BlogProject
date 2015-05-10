@@ -10,7 +10,7 @@ class HomeController extends BaseController
     public function __construct($blogName)
     {
         parent::__construct(SYSTEM_BLOG);
-        $this->pageSize = 10;
+        $this->pageSize = 8;
         $this->lastPage = (int)floor($this->modelData->countAllBlogs() / $this->pageSize);
     }
 

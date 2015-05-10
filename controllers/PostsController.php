@@ -122,7 +122,12 @@ class PostsController extends BaseController
             $title = trim($_POST['title']);
             $text = trim($_POST['text']);
             $date = strftime("%Y-%m-%d", time());
-            $postOwner = $this->modelData->getLoggedUserId($this->getUsername());
+            $user = $this->getUsername();
+            if ($user == 'admin'){
+                $user = strtolower($this->blogName);
+            }
+
+            $postOwner = $this->modelData->getLoggedUserId($user);
             $tags = preg_split('/,\s+/', $_POST['tags'], -1, PREG_SPLIT_NO_EMPTY);
             if (!empty($title) && !empty($text) && !empty($date) && count($tags) > 0 && $postOwner != 0) {
                 $postId = $this->modelData->createPost($title, $text, $date, $postOwner);

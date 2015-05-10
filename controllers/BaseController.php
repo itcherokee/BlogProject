@@ -97,7 +97,11 @@ abstract class BaseController
 
     public function isOwnerOfBlog()
     {
-        return $this->modelData->isOwnerOfBlog($this->blogName, $this->getUsername());
+        if ($this->getUsername() == 'admin' || $this->modelData->isOwnerOfBlog($this->blogName, $this->getUsername())){
+            return true;
+        }
+
+        return false;
     }
 
     function addInfoMessage($msg)
