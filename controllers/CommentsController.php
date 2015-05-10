@@ -26,9 +26,9 @@ class CommentsController extends BaseController
             $this->postId = $post_id;
 
             if (!empty($name) && !empty($text) & !empty('postId')) {
-                $commentId = $this->modelData->createComment($text, $name, $email, $post_id);
+                $comment_id = $this->modelData->createComment($text, $name, $email, $post_id);
                 $parameters[] = $post_id;
-                if ($commentId > 0) {
+                if ($comment_id > 0) {
                     $this->addInfoMessage("Comment added.");
 
                     $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $parameters);
@@ -49,7 +49,37 @@ class CommentsController extends BaseController
 
     public function edit($params)
     {
+        $this->authorize();
+        $comment_id = $params[0];
+        $this->postId = $params[1];
+        $this->actionName = __FUNCTION__;
+        $this->comment = $this->modelData->getCommentById($comment_id)[0];
 
+        if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $_SESSION['formToken']) {
+                throw new \Exception('Invalid request!');
+                exit;
+            }
+
+            $username = trim($_POST['username']);
+            $useremail = trim($_POST['useremail']);
+            $text = trim($_POST['text']);
+
+            if (!empty($username) && !empty($text)) {
+                if ($this->modelData->updateComment($comment_id, $username, $useremail, $text) > 0) {
+                    $this->addInfoMessage("Comment edited.");
+                    $parameters[] = $this->postId;
+                    $this->redirect($this->blogName, 'posts', DEFAULT_ACTION, $parameters);
+                } else {
+                    $this->addErrorMessage("Error editing comment.");
+                }
+            } else {
+                $this->addErrorMessage("Username & Text fields must have a value!");
+            }
+        }
+
+        $_SESSION['formToken'] = uniqid(mt_rand(), true);
+        $this->renderView();
     }
 
     public function delete($params)

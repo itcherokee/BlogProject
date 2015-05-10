@@ -7,7 +7,6 @@ class Database {
     private static $db = null;
 
     private function __construct() {
-        // Read the config/db.php db settings
         include 'config/db.php';
         $host = DB_HOST;
         $username = DB_USERNAME;

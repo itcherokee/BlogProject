@@ -21,16 +21,16 @@ class UsersController extends BaseController
                 throw new \Exception('Invalid request!');
                 exit;
             }
+
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $loginSuccess = $this->modelData->login($username, $password);
-            if ($loginSuccess) {
-                //$this->session->username = $username;
+            $login_success = $this->modelData->login($username, $password);
+            if ($login_success) {
                 $_SESSION['username'] = $username;
                 $this->addInfoMessage("Login success");
             } else {
                 $this->addErrorMessage("Login error");
-                $this->redirect(SYSTEM_BLOG, "users", "login");
+                $this->redirect(SYSTEM_BLOG, $this->controllerName, "login");
             }
 
             $this->redirect($username, 'posts', DEFAULT_ACTION);
@@ -58,8 +58,8 @@ class UsersController extends BaseController
 
             if (!empty($username) && !empty($password)) {
                 if (strlen($username) > 2 && strlen($password) > 4) {
-                    $registrationSuccess = $this->modelData->register($username, $password, $hasBlog);
-                    if ($registrationSuccess) {
+                    $registration_success = $this->modelData->register($username, $password, $hasBlog);
+                    if ($registration_success) {
                         $_SESSION['username'] = $username;
                         $this->addInfoMessage("Successful registration");
                     } else {

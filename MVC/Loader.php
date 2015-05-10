@@ -31,7 +31,6 @@ final class Loader
                     include $actualFile ;
                 }
                 else {
-                    //TODO: fix it
                     throw new \Exception('File cannot be loaded (' . $actualFile . ')');
                 }
 
@@ -45,7 +44,6 @@ final class Loader
         $namespace = trim($namespace);
         if (strlen($namespace) > 0) {
             if (!$path) {
-                //TODO: fix it
                 throw new \Exception('Invalid path');
             }
 
@@ -53,11 +51,9 @@ final class Loader
             if ($fixedPath && is_dir($fixedPath) && is_readable($fixedPath)) {
                 self::$namespaces[$namespace . '\\'] = $fixedPath . DIRECTORY_SEPARATOR;
             } else {
-                //TODO: fix it
                 throw new \Exception('Namespace directory read error: ' . $fixedPath);
             }
         } else {
-            //TODO: fix it
             throw new \Exception('Invalid namespace ' . $namespace);
         }
     }

@@ -18,11 +18,24 @@ class CommentsModel extends BaseModel
         return $statement->insert_id;
     }
 
-    public function updateComment($id, $text)
+    public function updateComment($id, $username, $useremail, $text)
     {
-        $query = "UPDATE comments SET text = ? WHERE id = ?";
+        $query = "UPDATE comments SET username = ?, useremail = ?, text = ? WHERE id = ?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("si", $text, $id);
+        $statement->bind_param("sssi", $username, $useremail, $text, $id);
         $statement->execute();
+
+        return $statement->affected_rows > 0;
+    }
+
+    public function getCommentById($id)
+    {
+        $query = "SELECT id, username, useremail, text FROM comments WHERE id = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        $result = $this->parseData($statement);
+
+        return $result;
     }
 }

@@ -1,7 +1,6 @@
 <?php
 namespace MVC;
 
-
 class FrontController
 {
     private static $instance = null;
@@ -25,10 +24,6 @@ class FrontController
         if (isset($this->blog)) {
             $this->controller = $router->getController();
             if (isset($this->controller) && file_exists('controllers/' . $this->controller . 'Controller.php')) {
-//            $admin_folder = $admin_routing ? 'admin/' : '';
-//            include_once 'controllers/' . $admin_folder . $controller . '.php';
-                // Is admin controller?
-//            $admin_namespace = $admin_routing ? '\Admin' : '';
                 $this->controller = '\\CONTROLLERS\\' . $this->controller . 'Controller';
                 $instance = new $this->controller($this->blog);
                 $this->action = $router->getAction();
@@ -46,20 +41,13 @@ class FrontController
                 $defaultController = '\\CONTROLLERS\\PostsController';
                 $instance = new $defaultController($this->blog);
                 call_user_func_array(array($instance, DEFAULT_ACTION), array());
-//
             }
-
         } else {
             // fallback to default controller and action - set in app.php config file
-            $this->callDefaultRoute();
+            $defaultController = '\\CONTROLLERS\\' . DEFAULT_CONTROLLER . 'Controller';
+            $instance = new $defaultController(SYSTEM_BLOG);
+            call_user_func_array(array($instance, DEFAULT_ACTION), array());
         }
-    }
-
-    private function callDefaultRoute()
-    {
-        $defaultController = '\\CONTROLLERS\\' . DEFAULT_CONTROLLER . 'Controller';
-        $instance = new $defaultController(SYSTEM_BLOG);
-        call_user_func_array(array($instance, DEFAULT_ACTION), array());
     }
 
     /**
