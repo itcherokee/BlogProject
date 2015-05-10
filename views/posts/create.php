@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="tags" class="col-xs-12 col-sm-2 control-label">Tags *:</label>
+                    <label for="tags" class="col-xs-12 col-sm-2 control-label">Tags **:</label>
 
                     <div class="col-xs-12 col-sm-10">
                         <input type="text" class="form-control" id="tags" placeholder="Tags" name="tags">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
-                        <span>* Mandatory</span>
+                        <span>* Mandatory; ** Mandatory, use comma as a separator</span>
                     </div>
                 </div>
             </form>

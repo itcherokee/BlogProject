@@ -138,7 +138,7 @@ class PostsController extends BaseController
                 $postId = $this->modelData->createPost($title, $text, $date, $postOwner);
                 if ($postId > 0) {
                     foreach ($tags as $tagName) {
-                        $tagName = trim($tagName);
+                        $tagName = strtolower(trim($tagName));
                         $tagId = $this->modelData->checkTagExists($tagName);
                         if ($tagId == null) {
                             $tagId = $this->modelData->createTag($tagName);
@@ -317,6 +317,5 @@ class PostsController extends BaseController
         }
 
         $this->renderView('index');
-
     }
 }

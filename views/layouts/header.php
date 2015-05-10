@@ -6,17 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--    <alink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
-    <!--    <alink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
-    <!--    <alink href="/content/css/styles.css" rel="stylesheet">-->
-    <!---->
-    <!--    <ascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-    <!--    <ascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <link href="/content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/content/css/bootstrap-theme.min.css" rel="stylesheet">
-    <script src="/content/js/jquery-2.1.1.min.js"></script>
-    <script src="/content/js/bootstrap.min.js"></script>
+
     <link href="/content/css/styles.css" rel="stylesheet">
     <title>
         <?php if (isset($this->title)) echo htmlspecialchars($this->title) ?>
