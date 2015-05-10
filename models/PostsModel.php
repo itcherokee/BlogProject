@@ -133,7 +133,7 @@ class PostsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
-    public function unlinkTagFromPost($tag_id, $post_id)
+    public function unlinkTagsFromPost($tag_id, $post_id)
     {
         $statement = $this->db->prepare("DELETE FROM tags_posts WHERE (tag_id, post_id) = (?,?)");
         $statement->bind_param("ii", $tag_id, $post_id);
@@ -157,7 +157,7 @@ class PostsModel extends BaseModel
     public function deletePost($post_id)
     {
         $statement = $this->db->prepare("DELETE FROM posts WHERE id = ?");
-        $statement->bind_param("i", $id);
+        $statement->bind_param("i", $post_id);
         $statement->execute();
         return $statement->affected_rows > 0;
     }
@@ -221,7 +221,6 @@ class PostsModel extends BaseModel
         $result = $this->parseData($statement);
         return $result;
     }
-
 
     public function getPostsHistorically($username)
     {

@@ -26,10 +26,44 @@
       <file leaf-file-name="PostsController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="161" column="0" selection-start="6735" selection-end="7264" vertical-scroll-proportion="-2.0" vertical-offset="390" max-vertical-offset="2329">
+            <state line="188" column="0" selection-start="7831" selection-end="7831" vertical-scroll-proportion="-2.8076923" vertical-offset="845" max-vertical-offset="2652">
               <folding>
-                <element signature="e#485#4886#0" expanded="false" />
-                <element signature="e#4892#6695#0" expanded="false" />
+                <element signature="e#485#4880#0" expanded="false" />
+                <element signature="e#4886#6689#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PostsModel.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/PostsModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="159" column="44" selection-start="5920" selection-end="5920" vertical-scroll-proportion="0.4806867" vertical-offset="891" max-vertical-offset="1377">
+              <folding>
+                <element signature="e#1060#1655#0" expanded="false" />
+                <element signature="e#1661#2407#0" expanded="false" />
+                <element signature="e#2413#2922#0" expanded="false" />
+                <element signature="e#2928#3605#0" expanded="false" />
+                <element signature="e#3611#3974#0" expanded="false" />
+                <element signature="e#3980#4400#0" expanded="false" />
+                <element signature="e#4406#4715#0" expanded="false" />
+                <element signature="e#4721#5038#0" expanded="false" />
+                <element signature="e#5044#5342#0" expanded="false" />
+                <element signature="e#5348#5752#0" expanded="false" />
+                <element signature="e#6011#6469#0" expanded="false" />
+                <element signature="e#6475#6885#0" expanded="false" />
+                <element signature="e#6891#7140#0" expanded="false" />
+                <element signature="e#7146#7794#0" expanded="false" />
+                <element signature="e#7800#8227#0" expanded="false" />
+                <element signature="e#8233#9478#0" expanded="false" />
+                <marker date="1431256040579" expanded="true" signature="203:264" placeholder="SELECT id, t..." />
+                <marker date="1431256040579" expanded="true" signature="4047:4086" placeholder="SELECT id FR..users..." />
+                <marker date="1431256040579" expanded="true" signature="4463:4496" placeholder="INSERT INTO ..." />
+                <marker date="1431256040579" expanded="true" signature="4794:4847" placeholder="INSERT INTO ..." />
+                <marker date="1431256040579" expanded="true" signature="5145:5199" placeholder="DELETE FROM ..." />
+                <marker date="1431256040579" expanded="true" signature="5409:5443" placeholder="SELECT id FR..tags..." />
+                <marker date="1431256040579" expanded="true" signature="5842:5872" placeholder="DELETE FROM ..." />
+                <marker date="1431256040579" expanded="true" signature="6961:7001" placeholder="UPDATE posts..." />
               </folding>
             </state>
           </provider>
@@ -56,28 +90,40 @@
       <file leaf-file-name="CommentsModel.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="472" selection-end="472" vertical-scroll-proportion="-2.5" vertical-offset="207" max-vertical-offset="4437">
+            <state line="19" column="0" selection-start="517" selection-end="517" vertical-scroll-proportion="-4.4615383" vertical-offset="207" max-vertical-offset="4318">
               <folding>
-                <marker date="1431251084866" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
-                <marker date="1431251084866" expanded="true" signature="580:613" placeholder="DELETE FROM ..." />
-                <marker date="1431251084866" expanded="true" signature="861:902" placeholder="UPDATE comme..." />
-                <marker date="1431251084866" expanded="true" signature="1167:1228" placeholder="SELECT id, t..." />
-                <marker date="1431251084866" expanded="true" signature="4056:4095" placeholder="SELECT id FR..users..." />
-                <marker date="1431251084866" expanded="true" signature="4472:4505" placeholder="INSERT INTO ..." />
-                <marker date="1431251084866" expanded="true" signature="4803:4856" placeholder="INSERT INTO ..." />
-                <marker date="1431251084866" expanded="true" signature="5153:5207" placeholder="DELETE FROM ..." />
-                <marker date="1431251084866" expanded="true" signature="5417:5451" placeholder="SELECT id FR..tags..." />
-                <marker date="1431251084866" expanded="true" signature="6718:6758" placeholder="UPDATE posts..." />
+                <marker date="1431255921046" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
+                <marker date="1431255921046" expanded="true" signature="589:630" placeholder="UPDATE comme..." />
+                <marker date="1431255921046" expanded="true" signature="895:956" placeholder="SELECT id, t..." />
+                <marker date="1431255921046" expanded="true" signature="3784:3823" placeholder="SELECT id FR..users..." />
+                <marker date="1431255921046" expanded="true" signature="4200:4233" placeholder="INSERT INTO ..." />
+                <marker date="1431255921046" expanded="true" signature="4531:4584" placeholder="INSERT INTO ..." />
+                <marker date="1431255921046" expanded="true" signature="4881:4935" placeholder="DELETE FROM ..." />
+                <marker date="1431255921046" expanded="true" signature="5145:5179" placeholder="SELECT id FR..tags..." />
+                <marker date="1431255921046" expanded="true" signature="6446:6486" placeholder="UPDATE posts..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentsController.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CommentsController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="1" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.5984252" vertical-offset="1055" max-vertical-offset="1309">
+            <state line="57" column="0" selection-start="1588" selection-end="2030" vertical-scroll-proportion="-6.5384617" vertical-offset="799" max-vertical-offset="1309">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/BaseModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="20" selection-start="1694" selection-end="1712" vertical-scroll-proportion="-10.038462" vertical-offset="827" max-vertical-offset="1326">
+              <folding>
+                <marker date="1431255920969" expanded="true" signature="322:367" placeholder="SELECT usern..users..." />
+                <marker date="1431255920969" expanded="true" signature="1355:1400" placeholder="SELECT usern..users..." />
+                <marker date="1431255920969" expanded="true" signature="1737:1770" placeholder="DELETE FROM ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,17 +184,17 @@
         <option value="$PROJECT_DIR$/views/home/index.php" />
         <option value="$PROJECT_DIR$/content/css/styles.css" />
         <option value="$PROJECT_DIR$/controllers/UsersController.php" />
-        <option value="$PROJECT_DIR$/models/PostsModel.php" />
         <option value="$PROJECT_DIR$/views/posts/create.php" />
-        <option value="$PROJECT_DIR$/models/BaseModel.php" />
         <option value="$PROJECT_DIR$/MVC/FrontController.php" />
-        <option value="$PROJECT_DIR$/models/CommentsModel.php" />
         <option value="$PROJECT_DIR$/views/comments/create.php" />
         <option value="$PROJECT_DIR$/views/layouts/header.php" />
         <option value="$PROJECT_DIR$/controllers/BaseController.php" />
-        <option value="$PROJECT_DIR$/controllers/PostsController.php" />
         <option value="$PROJECT_DIR$/views/posts/index.php" />
         <option value="$PROJECT_DIR$/controllers/CommentsController.php" />
+        <option value="$PROJECT_DIR$/models/CommentsModel.php" />
+        <option value="$PROJECT_DIR$/models/BaseModel.php" />
+        <option value="$PROJECT_DIR$/controllers/PostsController.php" />
+        <option value="$PROJECT_DIR$/models/PostsModel.php" />
       </list>
     </option>
   </component>
@@ -556,11 +602,16 @@
           <line>13</line>
           <option name="timeStamp" value="190" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/PostsController.php</url>
+          <line>161</line>
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="192" />
+      <option name="time" value="193" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -568,8 +619,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
           <folding>
-            <element signature="e#485#4886#0" expanded="false" />
-            <element signature="e#4892#6695#0" expanded="false" />
+            <element signature="e#485#4880#0" expanded="false" />
+            <element signature="e#4886#6689#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -604,8 +655,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
           <folding>
-            <element signature="e#485#4886#0" expanded="false" />
-            <element signature="e#4892#6695#0" expanded="false" />
+            <element signature="e#485#4880#0" expanded="false" />
+            <element signature="e#4886#6689#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -662,8 +713,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
           <folding>
-            <element signature="e#485#4886#0" expanded="false" />
-            <element signature="e#4892#6695#0" expanded="false" />
+            <element signature="e#485#4880#0" expanded="false" />
+            <element signature="e#4886#6689#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -789,35 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/PostsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="41" selection-start="6485" selection-end="6506" vertical-scroll-proportion="0.34857142" vertical-offset="898" max-vertical-offset="2482">
-          <folding>
-            <element signature="e#1060#1655#0" expanded="false" />
-            <element signature="e#1661#2407#0" expanded="false" />
-            <element signature="e#2413#2922#0" expanded="false" />
-            <element signature="e#2928#3605#0" expanded="false" />
-            <element signature="e#3611#3974#0" expanded="false" />
-            <element signature="e#3980#4400#0" expanded="false" />
-            <element signature="e#4406#4715#0" expanded="false" />
-            <element signature="e#4721#5038#0" expanded="false" />
-            <element signature="e#5044#5341#0" expanded="false" />
-            <element signature="e#5347#5751#0" expanded="false" />
-            <element signature="e#5757#5999#0" expanded="false" />
-            <element signature="e#6005#6463#0" expanded="false" />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="SELECT id, t..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="SELECT id FR..users..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="SELECT id FR..tags..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="UPDATE posts..." />
-            <marker date="1431210843156" expanded="true" signature="-1:-1" placeholder="SELECT p.id ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/users/register.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="10" selection-start="1853" selection-end="1853" vertical-scroll-proportion="-9.538462" vertical-offset="415" max-vertical-offset="765">
@@ -829,16 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="22" selection-start="1040" selection-end="1040" vertical-scroll-proportion="-3.0" vertical-offset="279" max-vertical-offset="629">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/BaseModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1578" selection-end="1578" vertical-scroll-proportion="-2.1538463" vertical-offset="913" max-vertical-offset="1173">
-          <folding>
-            <marker date="1431247032904" expanded="true" signature="-1:-1" placeholder="SELECT usern..users..." />
-            <marker date="1431247032904" expanded="true" signature="-1:-1" placeholder="SELECT usern..users..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -891,34 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="0" selection-start="6735" selection-end="7264" vertical-scroll-proportion="-2.0" vertical-offset="390" max-vertical-offset="2329">
-          <folding>
-            <element signature="e#485#4886#0" expanded="false" />
-            <element signature="e#4892#6695#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="472" selection-end="472" vertical-scroll-proportion="-2.5" vertical-offset="207" max-vertical-offset="4437">
-          <folding>
-            <marker date="1431251084866" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
-            <marker date="1431251084866" expanded="true" signature="580:613" placeholder="DELETE FROM ..." />
-            <marker date="1431251084866" expanded="true" signature="861:902" placeholder="UPDATE comme..." />
-            <marker date="1431251084866" expanded="true" signature="1167:1228" placeholder="SELECT id, t..." />
-            <marker date="1431251084866" expanded="true" signature="4056:4095" placeholder="SELECT id FR..users..." />
-            <marker date="1431251084866" expanded="true" signature="4472:4505" placeholder="INSERT INTO ..." />
-            <marker date="1431251084866" expanded="true" signature="4803:4856" placeholder="INSERT INTO ..." />
-            <marker date="1431251084866" expanded="true" signature="5153:5207" placeholder="DELETE FROM ..." />
-            <marker date="1431251084866" expanded="true" signature="5417:5451" placeholder="SELECT id FR..tags..." />
-            <marker date="1431251084866" expanded="true" signature="6718:6758" placeholder="UPDATE posts..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/posts/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="109" selection-start="3624" selection-end="3624" vertical-scroll-proportion="-5.1153846" vertical-offset="1057" max-vertical-offset="3247">
@@ -942,8 +926,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="1" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.5984252" vertical-offset="1055" max-vertical-offset="1309">
+        <state line="57" column="0" selection-start="1588" selection-end="2030" vertical-scroll-proportion="-6.5384617" vertical-offset="799" max-vertical-offset="1309">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="517" selection-end="517" vertical-scroll-proportion="-4.4615383" vertical-offset="207" max-vertical-offset="4318">
+          <folding>
+            <marker date="1431255921046" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
+            <marker date="1431255921046" expanded="true" signature="589:630" placeholder="UPDATE comme..." />
+            <marker date="1431255921046" expanded="true" signature="895:956" placeholder="SELECT id, t..." />
+            <marker date="1431255921046" expanded="true" signature="3784:3823" placeholder="SELECT id FR..users..." />
+            <marker date="1431255921046" expanded="true" signature="4200:4233" placeholder="INSERT INTO ..." />
+            <marker date="1431255921046" expanded="true" signature="4531:4584" placeholder="INSERT INTO ..." />
+            <marker date="1431255921046" expanded="true" signature="4881:4935" placeholder="DELETE FROM ..." />
+            <marker date="1431255921046" expanded="true" signature="5145:5179" placeholder="SELECT id FR..tags..." />
+            <marker date="1431255921046" expanded="true" signature="6446:6486" placeholder="UPDATE posts..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/BaseModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="20" selection-start="1694" selection-end="1712" vertical-scroll-proportion="-10.038462" vertical-offset="827" max-vertical-offset="1326">
+          <folding>
+            <marker date="1431255920969" expanded="true" signature="322:367" placeholder="SELECT usern..users..." />
+            <marker date="1431255920969" expanded="true" signature="1355:1400" placeholder="SELECT usern..users..." />
+            <marker date="1431255920969" expanded="true" signature="1737:1770" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="0" selection-start="7831" selection-end="7831" vertical-scroll-proportion="-2.8076923" vertical-offset="845" max-vertical-offset="2652">
+          <folding>
+            <element signature="e#485#4880#0" expanded="false" />
+            <element signature="e#4886#6689#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/PostsModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="44" selection-start="5920" selection-end="5920" vertical-scroll-proportion="0.4806867" vertical-offset="891" max-vertical-offset="1377">
+          <folding>
+            <element signature="e#1060#1655#0" expanded="false" />
+            <element signature="e#1661#2407#0" expanded="false" />
+            <element signature="e#2413#2922#0" expanded="false" />
+            <element signature="e#2928#3605#0" expanded="false" />
+            <element signature="e#3611#3974#0" expanded="false" />
+            <element signature="e#3980#4400#0" expanded="false" />
+            <element signature="e#4406#4715#0" expanded="false" />
+            <element signature="e#4721#5038#0" expanded="false" />
+            <element signature="e#5044#5342#0" expanded="false" />
+            <element signature="e#5348#5752#0" expanded="false" />
+            <element signature="e#6011#6469#0" expanded="false" />
+            <element signature="e#6475#6885#0" expanded="false" />
+            <element signature="e#6891#7140#0" expanded="false" />
+            <element signature="e#7146#7794#0" expanded="false" />
+            <element signature="e#7800#8227#0" expanded="false" />
+            <element signature="e#8233#9478#0" expanded="false" />
+            <marker date="1431256040579" expanded="true" signature="203:264" placeholder="SELECT id, t..." />
+            <marker date="1431256040579" expanded="true" signature="4047:4086" placeholder="SELECT id FR..users..." />
+            <marker date="1431256040579" expanded="true" signature="4463:4496" placeholder="INSERT INTO ..." />
+            <marker date="1431256040579" expanded="true" signature="4794:4847" placeholder="INSERT INTO ..." />
+            <marker date="1431256040579" expanded="true" signature="5145:5199" placeholder="DELETE FROM ..." />
+            <marker date="1431256040579" expanded="true" signature="5409:5443" placeholder="SELECT id FR..tags..." />
+            <marker date="1431256040579" expanded="true" signature="5842:5872" placeholder="DELETE FROM ..." />
+            <marker date="1431256040579" expanded="true" signature="6961:7001" placeholder="UPDATE posts..." />
+          </folding>
         </state>
       </provider>
     </entry>

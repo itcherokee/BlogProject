@@ -17,14 +17,7 @@ class CommentsModel extends BaseModel
         return $statement->insert_id;
     }
 
-    public function deleteComment($id)
-    {
-        $query = "DELETE FROM comments WHERE id = ?";
-        $statement = $this->db->prepare($query);
-        $statement->bind_param("i", $id);
-        $statement->execute();
-        return $statement->affected_rows > 0;
-    }
+
 
     public function updateComment($id, $text)
     {

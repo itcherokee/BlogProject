@@ -61,4 +61,13 @@ class BaseModel
 
         return false;
     }
+
+    public function deleteComment($id)
+    {
+        $query = "DELETE FROM comments WHERE id = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
 }

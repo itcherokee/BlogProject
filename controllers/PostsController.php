@@ -20,7 +20,7 @@ class PostsController extends BaseController
 
     public function index($id = array())
     {
-        if($this->blogName != SYSTEM_BLOG && $this->blogName != ADMIN_BLOG){
+        if ($this->blogName != SYSTEM_BLOG && $this->blogName != ADMIN_BLOG) {
             // loads all posts historically by year, by month, by day
             $this->historyList = $this->modelData->getPostsHistorically($this->blogName);
 
@@ -108,8 +108,7 @@ class PostsController extends BaseController
             }
 
             $this->renderView();
-        }
-        else {
+        } else {
             $this->redirect($this->blogName, DEFAULT_CONTROLLER, DEFAULT_ACTION);
         }
     }
@@ -157,24 +156,43 @@ class PostsController extends BaseController
         $this->renderView();
     }
 
-    public function delete($id)
+    public function delete($params)
     {
         $this->authorize();
-
+        $post_id = $params[0];
         $this->actionName = __FUNCTION__;
 
-        // check is there any comments linked -> check does checkbox allowinf delete of them is clicked -> yes delete all comments
-        // find all linked Tags -> unlink them
-        // delete post
+        $tags = $this->modelData->getAllTagsPerPost($post_id);
 
+        if (count($tags) > 0) {
+            foreach ($tags as $tag) {
+                if ($this->modelData->unlinkTagsFromPost($tag['id'], $post_id) < 0) {
+                    $this->addErrorMessage("Could not delete linked tags from post");
+                    $post[] = $post_id;
+                    $this->redirect($this->blogName, $this->controllerName, $this->actionName, $post);
+                }
+            }
+        }
 
-//        if ($this->modelData->deletePost($id)) {
-//            $this->addInfoMessage("Post deleted.");
-//        } else {
-//            $this->addErrorMessage("Cannot delete post - there are linked comments.");
-//        }
+        $comments = $this->modelData->getAllCommentsPerPost($post_id);
 
-        $this->renderView();
+        if (count($comments) > 0) {
+            foreach ($comments as $comment) {
+                if ($this->modelData->deleteComment($comment['id']) < 0) {
+                    $this->addErrorMessage("Could not delete linked comment from post");
+                    $post[] = $post_id;
+                    $this->redirect($this->blogName, $this->controllerName, $this->actionName, $post);
+                }
+            }
+        }
+
+        if ($this->modelData->deletePost($post_id) > 0) {
+            $this->addInfoMessage("post deleted.");
+        } else {
+            $this->addErrorMessage("Error deleting post");
+        }
+
+        $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION);
     }
 
     public function edit($id)
