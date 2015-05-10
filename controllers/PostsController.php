@@ -195,14 +195,33 @@ class PostsController extends BaseController
         $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION);
     }
 
-    public function edit($id)
+    public function edit($params)
     {
         $this->authorize();
-
+        $post_id = $params[0];
         $this->actionName = __FUNCTION__;
+        $this->post = $this->modelData->getPostById($post_id)[0];
+        //TODO: include editing of tags for post
+
+        if ($this->isPost) {
+            $title = trim($_POST['title']);
+            $text = trim($_POST['text']);
+
+            //$tags = preg_split('/,\s+/', $_POST['tags'], -1, PREG_SPLIT_NO_EMPTY);
+            if (!empty($title) && !empty($text)) {
+                if ($this->modelData->updatePost($title, $text, $post_id) > 0) {
+                    $this->addInfoMessage("Post edited.");
+                    $post[] = $post_id;
+                    $this->redirect($this->blogName, $this->controllerName, DEFAULT_ACTION, $post);
+                } else {
+                    $this->addErrorMessage("Error editing post.");
+                }
+            } else {
+                $this->addErrorMessage("All fields must have a value!");
+            }
+        }
 
         $this->renderView();
-
     }
 
     public function search()

@@ -16,12 +16,6 @@ class UsersModel extends BaseModel
         $statement = $this->db->prepare("SELECT id FROM users WHERE username = ?");
         $statement->bind_param("s", $username);
         $statement->execute();
-
-//        $result = $statement->get_result();
-//        if (count($result->fetch_all()) > 0) {
-//            return false;
-//        }
-
         $statement->bind_result($result);
         if ($statement->fetch() > 0) {
             return false;

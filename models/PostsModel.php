@@ -20,20 +20,6 @@ class PostsModel extends BaseModel
         return $result;
     }
 
-//    public function getAllPostsPerBlogWithLimit($blogName, $from, $pageSize)
-//    {
-//        $query = "SELECT p.id, title, text, date, visits  FROM posts p "
-//            . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? ORDER BY p.date DESC LIMIT ?,?";
-//        $statement = $this->db->prepare($query);
-//        $statement->bind_param("sii", $blogName, $from, $pageSize);
-//        $statement->execute();
-//
-//        // return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
-//
-//        $result = $this->parseData($statement);
-//        return $result;
-//    }
-
     public function getPostsPerBlogWithLimitByDate($blogName, $startDate, $endDate, $from, $pageSize)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
@@ -252,5 +238,14 @@ class PostsModel extends BaseModel
         }
 
         return $result;
+    }
+
+    public function updatePost($title, $text, $post_id)
+    {
+        $query = "UPDATE posts SET title = ?, text = ? WHERE id = ?";
+        $statement = $this->db->prepare($query);
+        $statement->bind_param("ssi", $title, $text, $post_id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
     }
 }
