@@ -67,9 +67,11 @@
                             echo '<div>';
                             echo '<span>written by [' . htmlspecialchars($comment['username']) . ']</span> ';
                             if ($this->isOwnerOfBlog()) {
-                                echo "<a href='/" . $this->blogName . "/comments/edit/" . htmlspecialchars($comment['id']) . "'> ";
+                                echo "<a href='/" . $this->blogName . "/comments/edit/"
+                                    . htmlspecialchars($comment['id']) . '/'. htmlspecialchars($post['id']) . "'> ";
                                 echo "<span class='glyphicon glyphicon-pencil'> </span></a>";
-                                echo "<a href='/" . $this->blogName . "/comments/delete/" . htmlspecialchars($comment['id']) . "'> ";
+                                echo "<a href='/" . $this->blogName . "/comments/delete/"
+                                    . htmlspecialchars($comment['id']) . '/'. htmlspecialchars($post['id']) .  "'> ";
                                 echo "<span class='glyphicon glyphicon-trash'></span></a>";
                             }
                             echo '</div>';

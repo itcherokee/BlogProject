@@ -53,8 +53,20 @@ class CommentsController extends BaseController
 
     }
 
-    public function delete($id)
+    public function delete($params)
     {
+        $this->authorize();
+        $comment_id = $params[0];
+        $post_id = $params[1];
+        $this->actionName = __FUNCTION__;
 
+        if ($this->modelData->deleteComment($comment_id)) {
+            $this->addInfoMessage("Comment deleted.");
+        } else {
+            $this->addErrorMessage("Error deleting comment");
+        }
+
+        $post[] = $post_id;
+        $this->redirect($this->blogName, 'Posts', DEFAULT_ACTION, $post);
     }
 }

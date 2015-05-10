@@ -23,11 +23,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PostsController.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PostsController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="81" selection-start="4870" selection-end="4870" vertical-scroll-proportion="0.7985782" vertical-offset="1567" max-vertical-offset="4624">
-              <folding />
+            <state line="161" column="0" selection-start="6735" selection-end="7264" vertical-scroll-proportion="-2.0" vertical-offset="390" max-vertical-offset="2329">
+              <folding>
+                <element signature="e#485#4886#0" expanded="false" />
+                <element signature="e#4892#6695#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,7 +38,7 @@
       <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/posts/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="32" selection-start="2829" selection-end="2829" vertical-scroll-proportion="-8.384615" vertical-offset="751" max-vertical-offset="3213">
+            <state line="70" column="109" selection-start="3624" selection-end="3624" vertical-scroll-proportion="-5.1153846" vertical-offset="1057" max-vertical-offset="3247">
               <folding />
             </state>
           </provider>
@@ -70,19 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentsController.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CommentsController.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="4" selection-start="1266" selection-end="1266" vertical-scroll-proportion="-8.846154" vertical-offset="450" max-vertical-offset="1105">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Router.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MVC/Router.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="225" selection-end="225" vertical-scroll-proportion="-2.9615386" vertical-offset="144" max-vertical-offset="1054">
+            <state line="71" column="1" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.5984252" vertical-offset="1055" max-vertical-offset="1309">
               <folding />
             </state>
           </provider>
@@ -91,7 +85,16 @@
       <file leaf-file-name="FrontController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MVC/FrontController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="917" selection-end="917" vertical-scroll-proportion="-2.9615386" vertical-offset="450" max-vertical-offset="1377">
+            <state line="38" column="0" selection-start="1317" selection-end="1317" vertical-scroll-proportion="-3.2307692" vertical-offset="562" max-vertical-offset="1377">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Router.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVC/Router.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="225" selection-end="225" vertical-scroll-proportion="-3.2307692" vertical-offset="137" max-vertical-offset="1054">
               <folding />
             </state>
           </provider>
@@ -139,13 +142,13 @@
         <option value="$PROJECT_DIR$/views/posts/create.php" />
         <option value="$PROJECT_DIR$/models/BaseModel.php" />
         <option value="$PROJECT_DIR$/MVC/FrontController.php" />
-        <option value="$PROJECT_DIR$/views/posts/index.php" />
         <option value="$PROJECT_DIR$/models/CommentsModel.php" />
-        <option value="$PROJECT_DIR$/controllers/CommentsController.php" />
         <option value="$PROJECT_DIR$/views/comments/create.php" />
         <option value="$PROJECT_DIR$/views/layouts/header.php" />
         <option value="$PROJECT_DIR$/controllers/BaseController.php" />
         <option value="$PROJECT_DIR$/controllers/PostsController.php" />
+        <option value="$PROJECT_DIR$/views/posts/index.php" />
+        <option value="$PROJECT_DIR$/controllers/CommentsController.php" />
       </list>
     </option>
   </component>
@@ -474,7 +477,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16045381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37166324" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37166324" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -539,27 +542,35 @@
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/controllers/CommentsController.php</url>
-          <line>28</line>
-          <option name="timeStamp" value="186" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/views/layouts/header.php</url>
           <line>63</line>
           <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint type="php">
+          <url>file://$PROJECT_DIR$/MVC/FrontController.php</url>
+          <line>34</line>
+          <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint type="php">
+          <url>file://$PROJECT_DIR$/MVC/Router.php</url>
+          <line>13</line>
+          <option name="timeStamp" value="190" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="189" />
+      <option name="time" value="192" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding />
+          <folding>
+            <element signature="e#485#4886#0" expanded="false" />
+            <element signature="e#4892#6695#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -592,7 +603,10 @@
     <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
-          <folding />
+          <folding>
+            <element signature="e#485#4886#0" expanded="false" />
+            <element signature="e#4892#6695#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -647,7 +661,10 @@
     <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="374">
-          <folding />
+          <folding>
+            <element signature="e#485#4886#0" expanded="false" />
+            <element signature="e#4892#6695#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -846,45 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/posts/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="32" selection-start="2829" selection-end="2829" vertical-scroll-proportion="-8.384615" vertical-offset="751" max-vertical-offset="3213">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="472" selection-end="472" vertical-scroll-proportion="-2.5" vertical-offset="207" max-vertical-offset="4437">
-          <folding>
-            <marker date="1431251084866" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
-            <marker date="1431251084866" expanded="true" signature="580:613" placeholder="DELETE FROM ..." />
-            <marker date="1431251084866" expanded="true" signature="861:902" placeholder="UPDATE comme..." />
-            <marker date="1431251084866" expanded="true" signature="1167:1228" placeholder="SELECT id, t..." />
-            <marker date="1431251084866" expanded="true" signature="4056:4095" placeholder="SELECT id FR..users..." />
-            <marker date="1431251084866" expanded="true" signature="4472:4505" placeholder="INSERT INTO ..." />
-            <marker date="1431251084866" expanded="true" signature="4803:4856" placeholder="INSERT INTO ..." />
-            <marker date="1431251084866" expanded="true" signature="5153:5207" placeholder="DELETE FROM ..." />
-            <marker date="1431251084866" expanded="true" signature="5417:5451" placeholder="SELECT id FR..tags..." />
-            <marker date="1431251084866" expanded="true" signature="6718:6758" placeholder="UPDATE posts..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MVC/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="225" selection-end="225" vertical-scroll-proportion="-2.9615386" vertical-offset="144" max-vertical-offset="1054">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MVC/FrontController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="917" selection-end="917" vertical-scroll-proportion="-2.9615386" vertical-offset="450" max-vertical-offset="1377">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/posts/create.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="24" selection-start="1594" selection-end="1657" vertical-scroll-proportion="-10.461538" vertical-offset="255" max-vertical-offset="748">
@@ -913,16 +891,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
+    <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="4" selection-start="1266" selection-end="1266" vertical-scroll-proportion="-8.846154" vertical-offset="450" max-vertical-offset="1105">
+        <state line="161" column="0" selection-start="6735" selection-end="7264" vertical-scroll-proportion="-2.0" vertical-offset="390" max-vertical-offset="2329">
+          <folding>
+            <element signature="e#485#4886#0" expanded="false" />
+            <element signature="e#4892#6695#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/CommentsModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="472" selection-end="472" vertical-scroll-proportion="-2.5" vertical-offset="207" max-vertical-offset="4437">
+          <folding>
+            <marker date="1431251084866" expanded="true" signature="237:313" placeholder="INSERT INTO ..." />
+            <marker date="1431251084866" expanded="true" signature="580:613" placeholder="DELETE FROM ..." />
+            <marker date="1431251084866" expanded="true" signature="861:902" placeholder="UPDATE comme..." />
+            <marker date="1431251084866" expanded="true" signature="1167:1228" placeholder="SELECT id, t..." />
+            <marker date="1431251084866" expanded="true" signature="4056:4095" placeholder="SELECT id FR..users..." />
+            <marker date="1431251084866" expanded="true" signature="4472:4505" placeholder="INSERT INTO ..." />
+            <marker date="1431251084866" expanded="true" signature="4803:4856" placeholder="INSERT INTO ..." />
+            <marker date="1431251084866" expanded="true" signature="5153:5207" placeholder="DELETE FROM ..." />
+            <marker date="1431251084866" expanded="true" signature="5417:5451" placeholder="SELECT id FR..tags..." />
+            <marker date="1431251084866" expanded="true" signature="6718:6758" placeholder="UPDATE posts..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/posts/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="109" selection-start="3624" selection-end="3624" vertical-scroll-proportion="-5.1153846" vertical-offset="1057" max-vertical-offset="3247">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/PostsController.php">
+    <entry file="file://$PROJECT_DIR$/MVC/Router.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="81" selection-start="4870" selection-end="4870" vertical-scroll-proportion="0.7985782" vertical-offset="1567" max-vertical-offset="4624">
+        <state line="13" column="0" selection-start="225" selection-end="225" vertical-scroll-proportion="-3.2307692" vertical-offset="137" max-vertical-offset="1054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVC/FrontController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1317" selection-end="1317" vertical-scroll-proportion="-3.2307692" vertical-offset="562" max-vertical-offset="1377">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/CommentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="1" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.5984252" vertical-offset="1055" max-vertical-offset="1309">
           <folding />
         </state>
       </provider>
