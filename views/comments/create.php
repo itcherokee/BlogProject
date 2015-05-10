@@ -29,10 +29,6 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 col-xs-12">
                         <input type="submit" class="btn btn-default" value="Create"/>
-                        <a href="/<?php echo $this->blogName ?>/posts/index">Cancel</a>
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-</section>
