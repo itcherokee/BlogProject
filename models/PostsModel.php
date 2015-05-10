@@ -15,23 +15,25 @@ class PostsModel extends BaseModel
         $statement->bind_param("i", $id);
         $statement->execute();
         $result = $this->parseData($statement);
+
         return $result;
     }
 
-    public function getPostsPerBlogWithLimitByDate($blogName, $startDate, $endDate, $from, $pageSize)
+    public function getPostsPerBlogWithLimitByDate($blog_name, $start_date, $end_date, $from, $page_size)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
             . "INNER JOIN users u ON p.user_id = u.id "
             . "WHERE u.username = ? AND p.date BETWEEN ? AND ? "
             . "ORDER BY p.date DESC LIMIT ?,?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("sssii", $blogName, $startDate, $endDate, $from, $pageSize);
+        $statement->bind_param("sssii", $blog_name, $start_date, $end_date, $from, $page_size);
         $statement->execute();
         $result = $this->parseData($statement);
+
         return $result;
     }
 
-    public function getPostsPerBlogWithLimitByDateByTag($blogName, $tag, $startDate, $endDate, $from, $pageSize)
+    public function getPostsPerBlogWithLimitByDateByTag($blog_name, $tag, $start_date, $end_date, $from, $page_size)
     {
         $query = "SELECT p.id, title, text, date, visits  FROM posts p "
             . "INNER JOIN users u ON p.user_id = u.id "
@@ -40,26 +42,28 @@ class PostsModel extends BaseModel
             . "WHERE u.username = ? AND t.name = ? AND p.date BETWEEN ? AND ? "
             . "ORDER BY p.date DESC LIMIT ?,?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("ssssii", $blogName, $tag, $startDate, $endDate, $from, $pageSize);
+        $statement->bind_param("ssssii", $blog_name, $tag, $start_date, $end_date, $from, $page_size);
         $statement->execute();
         $result = $this->parseData($statement);
+
         return $result;
     }
 
-    public function countAllPostsPerBlog($username, $startDate, $endDate)
+    public function countAllPostsPerBlog($username, $start_date, $end_date)
     {
         $query = "SELECT count(p.Id) FROM posts p "
             . "INNER JOIN users u ON p.user_id = u.id WHERE u.username = ? AND p.date BETWEEN ? AND ? ";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("sss", $username, $startDate, $endDate);
+        $statement->bind_param("sss", $username, $start_date, $end_date);
         $statement->execute();
         $result = null;
         $statement->bind_result($result);
         $statement->fetch();
+
         return $result;
     }
 
-    public function countAllPostsPerBlogPerTag($username, $tag, $startDate, $endDate)
+    public function countAllPostsPerBlogPerTag($username, $tag, $start_date, $end_date)
     {
         $query = "SELECT count(p.Id) FROM posts p "
             . "INNER JOIN users u ON p.user_id = u.id "
@@ -67,11 +71,12 @@ class PostsModel extends BaseModel
             . "INNER JOIN tags t ON t.id = tp.tag_id "
             . "WHERE u.username = ? AND t.name = ? AND p.date BETWEEN ? AND ?";
         $statement = $this->db->prepare($query);
-        $statement->bind_param("ssss", $username, $tag, $startDate, $endDate);
+        $statement->bind_param("ssss", $username, $tag, $start_date, $end_date);
         $statement->execute();
         $result = null;
         $statement->bind_result($result);
         $statement->fetch();
+
         return $result;
     }
 
@@ -82,6 +87,7 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("sssi", $title, $text, $date, $user_id);
         $statement->execute();
+
         return $statement->insert_id;
     }
 
@@ -91,21 +97,21 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $username);
         $statement->execute();
-        //return $statement->get_result()->fetch_row()[0];
         $result = null;
         $statement->bind_result($result);
         $statement->fetch();
+
         return $result;
     }
 
-    public function CreateTag($name)
+    public function createTag($name)
     {
         $query = "INSERT INTO tags (name) VALUES(?)";
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $name);
         $statement->execute();
+
         return $statement->insert_id;
-        // return $statement->affected_rows > 0;
     }
 
     public function linkTagToPost($tag_id, $post_id)
@@ -114,6 +120,7 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("ii", $tag_id, $post_id);
         $statement->execute();
+
         return $statement->affected_rows > 0;
     }
 
@@ -122,6 +129,7 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare("DELETE FROM tags_posts WHERE (tag_id, post_id) = (?,?)");
         $statement->bind_param("ii", $tag_id, $post_id);
         $statement->execute();
+
         return $statement->affected_rows > 0;
     }
 
@@ -131,10 +139,10 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("s", $tag);
         $statement->execute();
-        //return $statement->get_result()->fetch_row()[0];
         $result = null;
         $statement->bind_result($result);
         $statement->fetch();
+
         return $result;
     }
 
@@ -143,6 +151,7 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare("DELETE FROM posts WHERE id = ?");
         $statement->bind_param("i", $post_id);
         $statement->execute();
+
         return $statement->affected_rows > 0;
     }
 
@@ -153,8 +162,8 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("i", $post_id);
         $statement->execute();
-        // return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
         $result = $this->parseData($statement);
+
         return $result;
     }
 
@@ -166,6 +175,7 @@ class PostsModel extends BaseModel
         $statement->bind_param("i", $post_id);
         $statement->execute();
         $result = $this->parseData($statement);
+
         return $result;
     }
 
@@ -174,6 +184,7 @@ class PostsModel extends BaseModel
         $query = "UPDATE posts SET visits = ? WHERE id = ?";
         $statement = $this->db->prepare($query);
         $statement->bind_param("ii", $views, $id);
+
         $statement->execute();
     }
 
@@ -192,6 +203,7 @@ class PostsModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $this->parseData($statement);
+
         return $result;
     }
 
@@ -203,6 +215,7 @@ class PostsModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $this->parseData($statement);
+
         return $result;
     }
 
@@ -244,6 +257,7 @@ class PostsModel extends BaseModel
         $statement = $this->db->prepare($query);
         $statement->bind_param("ssi", $title, $text, $post_id);
         $statement->execute();
+
         return $statement->affected_rows > 0;
     }
 }

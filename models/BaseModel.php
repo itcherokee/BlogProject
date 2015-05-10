@@ -12,13 +12,12 @@ class BaseModel
         $this->db->set_charset('UTF8');
     }
 
-    public function isOwnerOfBlog($blogName, $username)
+    public function isOwnerOfBlog($blog_name, $username)
     {
         $statement = $this->db->prepare("SELECT username FROM users WHERE username = ?");
-        $statement->bind_param("s", $blogName);
+        $statement->bind_param("s", $blog_name);
         $statement->execute();
-        //$result = $statement->get_result()->fetch_assoc();
-        $result = null; // = $this->parseData($statement);
+        $result = null;
         $statement->bind_result($result);
         $statement->fetch();
         if ($result != null && $result == $username) {
@@ -31,6 +30,7 @@ class BaseModel
     protected function parseData($statement)
     {
         $meta = $statement->result_metadata();
+        $params = array();
         while ($field = $meta->fetch_field()) {
             $params[] = & $row[$field->name];
         }
@@ -47,10 +47,10 @@ class BaseModel
         return $result;
     }
 
-    public function isBlogExists($blogName)
+    public function isBlogExists($blog_name)
     {
         $statement = $this->db->prepare("SELECT username FROM users WHERE username = ?");
-        $statement->bind_param("s", $blogName);
+        $statement->bind_param("s", $blog_name);
         $statement->execute();
         $result = null;
         $statement->bind_result($result);

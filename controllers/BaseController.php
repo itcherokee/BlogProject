@@ -12,14 +12,14 @@ abstract class BaseController
 
     protected $pageSize = 3;
 
-    public function __construct($blogName)
+    public function __construct($blog_name)
     {
-        $this->blogName = $blogName;
+        $this->blogName = $blog_name;
         $this->controllerName = $this->getControllerName();
-        $modelFile = '\\MODELS\\' . $this->controllerName . 'Model';
-        $preTitle = $this->blogName != null ? $this->blogName . ' - ' : '';
-        $this->title = $preTitle . $this->controllerName;
-        $this->modelData = new $modelFile();
+        $model_file = '\\MODELS\\' . $this->controllerName . 'Model';
+        $pre_title = $this->blogName != null ? $this->blogName . ' - ' : '';
+        $this->title = $pre_title . $this->controllerName;
+        $this->modelData = new $model_file();
         session_set_cookie_params(1800, "/");
         session_start();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,23 +31,22 @@ abstract class BaseController
         $this->checkBlogExists();
     }
 
-    public function renderView($otherAction = null, $includeLayout = true)
+    public function renderView($action = null, $include_layout = true)
     {
-        // if (!$this->isViewRendered) {
-        $selectedAction = $otherAction == null ? strtolower($this->actionName) : strtolower($otherAction);
-        $viewFileName = 'views/' . strtolower($this->controllerName) . '/' . $selectedAction . '.php';
-        if ($includeLayout) {
-            $headerFile = 'views/layouts/header.php';
-            include_once($headerFile);
+        $selected_action = $action == null ? strtolower($this->actionName) : strtolower($action);
+        $view_file_name = 'views/' . strtolower($this->controllerName) . '/' . $selected_action . '.php';
+        if ($include_layout) {
+            $header_file = 'views/layouts/header.php';
+            include_once($header_file);
         }
 
-        include_once($viewFileName);
-        if ($includeLayout) {
-            $footerFile = 'views/layouts/footer.php';
-            include_once($footerFile);
+        include_once($view_file_name);
+        if ($include_layout) {
+            $footer_file = 'views/layouts/footer.php';
+            include_once($footer_file);
         }
-        $this->isViewRendered = true;
-        //  }
+
+        //$this->isViewRendered = true;
     }
 
     public function redirectToUrl($url)
@@ -56,11 +55,11 @@ abstract class BaseController
         die;
     }
 
-    public function redirect($blog, $controllerName, $actionName = "Index", $params = null)
+    public function redirect($blog, $controller_name, $action_name = DEFAULT_ACTION, $params = null)
     {
         $url = '/' . urlencode($blog);
-        $url .= '/' . urlencode($controllerName);
-        $url .= '/' . urlencode($actionName);
+        $url .= '/' . urlencode($controller_name);
+        $url .= '/' . urlencode($action_name);
 
         if ($params != null) {
             $encodedParams = array_map( 'urlencode', $params);
@@ -72,9 +71,9 @@ abstract class BaseController
 
     protected function getControllerName()
     {
-        $fullClassName = substr(get_class($this), 12);
-        $classNameLength = strlen($fullClassName) - strlen('Controller');
-        return substr($fullClassName, 0, $classNameLength);
+        $full_class_name = substr(get_class($this), 12);
+        $class_name_length = strlen($full_class_name) - strlen('Controller');
+        return substr($full_class_name, 0, $class_name_length);
     }
 
     public function isLoggedIn()

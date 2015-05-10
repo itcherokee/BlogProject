@@ -8,7 +8,7 @@
             if ($this->blogs != null) {
                 echo '<div class="row">';
                 foreach ($this->blogs as $blog) {
-                    echo '<div class="col-xs-6 col-sm-3">';
+                    echo '<div class="col-xs-12 col-sm-3">';
                     echo '<div class="thumbnail">';
                     echo '<a href="/' . htmlspecialchars($blog['username']) . '/posts/index">';
                     echo '<img class="img-thumbnail" src="/content/blog.png">';
